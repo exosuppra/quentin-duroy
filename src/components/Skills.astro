@@ -34,25 +34,25 @@ const groups = [
 
 const accentMap = {
   lavande:
-    "border-style: solid; border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); color: #c4b5fd;",
+    "border-color: rgba(124,58,237,0.30); background: rgba(124,58,237,0.07); color: #5b21b6;",
   terracotta:
-    "border-style: solid; border-color: rgba(251,146,60,0.28); background: rgba(251,146,60,0.07); color: #fed7aa;",
+    "border-color: rgba(194,65,12,0.32); background: rgba(194,65,12,0.07); color: #9a3412;",
   ocre:
-    "border-style: solid; border-color: rgba(251,191,36,0.28); background: rgba(251,191,36,0.07); color: #fde68a;",
+    "border-color: rgba(217,119,6,0.34); background: rgba(217,119,6,0.08); color: #92400e;",
 } as const;
 ---
 
 <section id="competences" class="relative overflow-hidden py-32 sm:py-40">
   <!-- Garrigue grid background -->
   <div
-    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.12]"
-    style="background-image: linear-gradient(to right, rgba(167,139,250,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(217,119,6,0.14) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"
+    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.20]"
+    style="background-image: linear-gradient(to right, rgba(124,58,237,0.20) 1px, transparent 1px), linear-gradient(to bottom, rgba(217,119,6,0.16) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"
   >
   </div>
-  <!-- Sunset glow horizon -->
+  <!-- Sun glow horizon -->
   <div
-    class="pointer-events-none absolute inset-x-0 top-1/4 -z-10 h-72 opacity-40"
-    style="background: radial-gradient(ellipse at 30% 50%, #7c3aed 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #c2410c 0%, transparent 60%), radial-gradient(ellipse at 50% 90%, #d97706 0%, transparent 60%); filter: blur(80px);"
+    class="pointer-events-none absolute inset-x-0 top-1/4 -z-10 h-72 opacity-30"
+    style="background: radial-gradient(ellipse at 30% 50%, #a78bfa 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #fb923c 0%, transparent 60%), radial-gradient(ellipse at 50% 90%, #fbbf24 0%, transparent 60%); filter: blur(80px);"
   >
   </div>
 
@@ -60,17 +60,22 @@ const accentMap = {
     <div class="mb-16 text-center">
       <div
         class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
-        style="border-color: rgba(251,146,60,0.25); background: rgba(251,146,60,0.06); color: #fed7aa;"
+        style="border-color: rgba(194,65,12,0.28); background: rgba(194,65,12,0.07); color: #9a3412;"
       >
         Compétences
       </div>
-      <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl" style="color: #fef3c7;">
+      <h2
+        class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+        style="color: #1f1006;"
+      >
         Une stack <span class="text-gradient">moderne</span>,<br />
         au service du produit.
       </h2>
-      <p class="mx-auto mt-6 max-w-2xl text-base" style="color: #e9d5b3;">
-        Spécialité : orchestrer des scénarios <span style="color: #fde68a;">Make.com</span> et des agents IA pour
-        livrer des produits qui tournent en production — sans usine à gaz.
+      <p class="mx-auto mt-6 max-w-2xl text-base" style="color: #4a3527;">
+        Spécialité : orchestrer des scénarios{" "}
+        <span style="color: #1f1006; font-weight: 600;">Make.com</span> et des
+        agents IA pour livrer des produits qui tournent en production — sans
+        usine à gaz.
       </p>
     </div>
 
@@ -79,11 +84,11 @@ const accentMap = {
         groups.map((group) => (
           <div
             class="flex flex-wrap items-center gap-3 border-t pt-6 first:border-0 first:pt-0"
-            style="border-color: rgba(255,255,255,0.06);"
+            style="border-color: rgba(31,16,6,0.08);"
           >
             <div
               class="w-28 shrink-0 text-sm font-semibold uppercase tracking-wider"
-              style="color: #a8927a;"
+              style="color: #8a7868;"
             >
               {group.label}
             </div>

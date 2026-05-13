@@ -5,8 +5,8 @@ import { cn } from "../lib/cn";
 
 /**
  * Hero with:
- *  - Aurora background (CSS animated conic-gradient)
- *  - Spotlight that follows the cursor (Hero Highlight inspired)
+ *  - Soft Aurora background (light Provence palette)
+ *  - Spotlight that follows the cursor (lavender wash)
  *  - Title with letter-by-letter motion entrance
  *  - Floating CTA buttons
  */
@@ -44,7 +44,7 @@ export default function Hero() {
     >
       <AuroraBackground />
 
-      {/* spotlight follows cursor */}
+      {/* spotlight follows cursor — soft lavender wash on light bg */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
@@ -52,7 +52,7 @@ export default function Hero() {
           background: useTransform(
             [bgX, bgY],
             ([x, y]) =>
-              `radial-gradient(600px circle at ${x} ${y}, rgba(217,119,6,0.18), transparent 55%)`,
+              `radial-gradient(600px circle at ${x} ${y}, rgba(124,58,237,0.10), transparent 55%)`,
           ),
         }}
       />
@@ -62,18 +62,33 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavande-500/30 bg-lavande-500/10 px-4 py-1.5 text-sm font-medium text-lavande-200 backdrop-blur"
-          style={{ borderColor: "rgba(139,92,246,0.35)", backgroundColor: "rgba(139,92,246,0.10)", color: "#ddd6fe" }}
+          className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium backdrop-blur"
+          style={{
+            borderColor: "rgba(124,58,237,0.30)",
+            background: "rgba(255,255,255,0.65)",
+            color: "#5b21b6",
+          }}
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "#f97316" }}></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "#f97316" }}></span>
+            <span
+              className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+              style={{ background: "#f97316" }}
+            />
+            <span
+              className="relative inline-flex h-2 w-2 rounded-full"
+              style={{ background: "#f97316" }}
+            />
           </span>
           <span>☀️ Disponible pour de nouveaux projets</span>
         </motion.div>
 
         <h1 className="mb-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-          <span className="mb-3 block text-xs font-medium uppercase tracking-[0.3em] sm:text-sm" style={{ color: "#a8927a" }}>Bonjour, je suis</span>
+          <span
+            className="mb-3 block text-xs font-medium uppercase tracking-[0.3em] sm:text-sm"
+            style={{ color: "#8a7868" }}
+          >
+            Bonjour, je suis
+          </span>
           <span className="block">
             {titleLetters.map((c, i) => (
               <motion.span
@@ -85,13 +100,10 @@ export default function Hero() {
                   duration: 0.5,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className={cn(
-                  "inline-block",
-                  i >= 8 ? "text-gradient" : "",
-                )}
-                style={i < 8 ? { color: "#fef3c7" } : undefined}
+                className={cn("inline-block", i >= 8 ? "text-gradient" : "")}
+                style={i < 8 ? { color: "#1f1006" } : undefined}
               >
-                {c === " " ? " " : c}
+                {c === " " ? " " : c}
               </motion.span>
             ))}
           </span>
@@ -102,10 +114,11 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
           className="mx-auto mb-10 max-w-2xl text-lg sm:text-xl"
-          style={{ color: "#e9d5b3" }}
+          style={{ color: "#4a3527" }}
         >
-          Chef de projet <span style={{ color: "#fef3c7" }}>IA &amp; développement web</span>,
-          basé en Provence. J'aide les entreprises à <span style={{ color: "#fef3c7" }}>automatiser leurs workflows</span> et
+          Chef de projet <span style={{ color: "#1f1006", fontWeight: 600 }}>IA &amp; développement web</span>,
+          basé en Provence. J'aide les entreprises à{" "}
+          <span style={{ color: "#1f1006", fontWeight: 600 }}>automatiser leurs workflows</span> et
           lancer leurs produits IA — de l'idée à la production.
         </motion.p>
 
@@ -119,8 +132,10 @@ export default function Hero() {
             href="#contact"
             className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
             style={{
-              background: "linear-gradient(90deg, #7c3aed 0%, #c026d3 35%, #c2410c 70%, #d97706 100%)",
-              boxShadow: "0 10px 30px -10px rgba(124,58,237,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset",
+              background:
+                "linear-gradient(90deg, #7c3aed 0%, #c026d3 35%, #c2410c 70%, #d97706 100%)",
+              boxShadow:
+                "0 10px 30px -10px rgba(124,58,237,0.45), 0 0 0 1px rgba(255,255,255,0.10) inset",
             }}
           >
             <span className="relative z-10">Discuter d'un projet</span>
@@ -134,18 +149,25 @@ export default function Hero() {
             </svg>
             <span
               className="absolute inset-0 -translate-x-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
-              style={{ background: "linear-gradient(90deg, #d97706 0%, #c2410c 35%, #c026d3 70%, #7c3aed 100%)" }}
+              style={{
+                background:
+                  "linear-gradient(90deg, #d97706 0%, #c2410c 35%, #c026d3 70%, #7c3aed 100%)",
+              }}
             />
           </a>
 
           <a
             href="#projets"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-base font-semibold backdrop-blur transition-all hover:-translate-y-0.5"
-            style={{ color: "#fef3c7" }}
+            className="inline-flex items-center gap-2 rounded-full border px-8 py-3.5 text-base font-semibold backdrop-blur transition-all hover:-translate-y-0.5"
+            style={{
+              borderColor: "rgba(31,16,6,0.18)",
+              background: "rgba(255,255,255,0.55)",
+              color: "#1f1006",
+            }}
           >
             Voir mes projets
             <svg
-              className="h-4 w-4 transition-transform group-hover:translate-y-0.5"
+              className="h-4 w-4 transition-transform"
               viewBox="0 0 16 16"
               fill="currentColor"
               aria-hidden
@@ -159,7 +181,8 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.4, duration: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em] text-fg-dim"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.3em]"
+          style={{ color: "#8a7868" }}
         >
           <span className="inline-block animate-bounce" style={{ animationDuration: "2s" }}>
             ↓
