@@ -1,0 +1,47 @@
+---
+const paragraphs = [
+  "Basé en Provence-Alpes-Côte d'Azur, j'accompagne depuis plusieurs années des entreprises de toutes tailles dans leur transformation IA et leur présence en ligne. Mon approche combine ingénierie produit, intégration multi-modèles et automatisation des workflows métier.",
+  "Diplômé de SUPDEWEB, j'ai d'abord forgé mon expertise sur des projets web complexes (SaaS, e-commerce, intranets) avant de me spécialiser dans l'IA générative et l'agentic automation. Je conçois aujourd'hui des produits qui transforment l'idée d'un client en application déployée en quelques semaines.",
+  "Je travaille en direct avec les fondateurs et les dirigeants, sans intermédiaire, depuis Saint-Martin-de-Brômes. Mes clients sont partout en France et à l'international — la distance n'est pas un sujet quand l'exécution est rigoureuse.",
+];
+---
+
+<section
+  id="about"
+  class="relative mx-auto max-w-6xl px-6 py-32 sm:py-40"
+>
+  <div class="grid gap-16 md:grid-cols-[1fr_2fr] md:gap-20">
+    <div class="md:sticky md:top-32 md:self-start">
+      <div class="inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-violet-300">
+        À propos
+      </div>
+      <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+        Construire des produits
+        <span class="text-gradient">qui marchent.</span>
+      </h2>
+    </div>
+
+    <div class="space-y-6 text-lg leading-relaxed text-fg-muted">
+      {paragraphs.map((p) => <p>{p}</p>)}
+
+      <div class="mt-10 grid grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
+        <div>
+          <div class="text-3xl font-bold text-white">8+</div>
+          <div class="mt-1 text-sm text-fg-dim">années web</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">30+</div>
+          <div class="mt-1 text-sm text-fg-dim">projets livrés</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">240 p.</div>
+          <div class="mt-1 text-sm text-fg-dim">manga généré</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-white">FR/EN/ES</div>
+          <div class="mt-1 text-sm text-fg-dim">trilingue</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

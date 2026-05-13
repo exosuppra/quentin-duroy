@@ -1,0 +1,82 @@
+---
+const groups = [
+  {
+    label: "Front",
+    accent: "violet",
+    items: ["React", "Astro", "Vite", "TypeScript", "Tailwind", "Motion"],
+  },
+  {
+    label: "Back",
+    accent: "fuchsia",
+    items: ["Node.js", "Supabase", "PostgreSQL", "Cloudflare Workers", "REST", "GraphQL"],
+  },
+  {
+    label: "IA",
+    accent: "rose",
+    items: ["OpenAI", "Anthropic", "Gemini", "Stable Diffusion", "Multi-modèles", "Agents"],
+  },
+  {
+    label: "DevOps",
+    accent: "violet",
+    items: ["Cloudflare Pages", "GitHub Actions", "Monitoring", "Edge functions"],
+  },
+  {
+    label: "Conseil",
+    accent: "rose",
+    items: ["Audit SEO technique", "Refonte perf", "Hardening sécurité", "Stratégie produit"],
+  },
+];
+
+const accentMap = {
+  violet: "border-violet-500/20 bg-violet-500/5 text-violet-300 hover:bg-violet-500/15",
+  fuchsia: "border-fuchsia-500/20 bg-fuchsia-500/5 text-fuchsia-300 hover:bg-fuchsia-500/15",
+  rose: "border-rose-500/20 bg-rose-500/5 text-rose-300 hover:bg-rose-500/15",
+} as const;
+---
+
+<section id="competences" class="relative overflow-hidden py-32 sm:py-40">
+  <!-- Background Boxes inspired grid -->
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.15]"
+    style="background-image: linear-gradient(to right, rgba(167,139,250,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(167,139,250,0.15) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-x-0 top-1/4 -z-10 h-72 opacity-30"
+    style="background: radial-gradient(ellipse at 30% 50%, #7c3aed 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #e11d48 0%, transparent 60%); filter: blur(80px);"
+  >
+  </div>
+
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="mb-16 text-center">
+      <div class="inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-violet-300">
+        Compétences
+      </div>
+      <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+        Une stack <span class="text-gradient">moderne</span>,<br />
+        au service du produit.
+      </h2>
+    </div>
+
+    <div class="space-y-8">
+      {
+        groups.map((group) => (
+          <div class="flex flex-wrap items-center gap-3 border-t border-white/5 pt-6 first:border-0 first:pt-0">
+            <div class="w-20 shrink-0 text-sm font-semibold uppercase tracking-wider text-fg-dim">
+              {group.label}
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span
+                  class={`inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium backdrop-blur transition-all hover:-translate-y-0.5 ${accentMap[group.accent as keyof typeof accentMap]}`}
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

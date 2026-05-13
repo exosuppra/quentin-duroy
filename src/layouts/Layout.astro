@@ -1,0 +1,74 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = "Quentin DUROY — Chef de projet IA & développement web | Provence",
+  description = "Ingénieur projet IA basé en Provence. J'accompagne les entreprises sur l'automatisation, l'intégration IA et le développement web. Découvrez mes projets et services.",
+  canonical = "https://quentin-duroy.fr/",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="fr_FR" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0a0118" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: "Quentin DUROY",
+        url: "https://quentin-duroy.fr",
+        image: "https://quentin-duroy.fr/avatar.jpg",
+        jobTitle: "Chef de projet IA et développement web",
+        worksFor: {
+          "@type": "Organization",
+          name: "LOGIQ IA",
+          url: "https://logiq-ia.fr",
+        },
+        alumniOf: {
+          "@type": "EducationalOrganization",
+          name: "SUPDEWEB",
+        },
+        sameAs: [
+          "https://fr.linkedin.com/in/quentin-duroy",
+          "https://manga-ai.fr",
+          "https://logiq-ia.fr",
+        ],
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Saint-Martin-de-Brômes",
+          addressRegion: "Provence-Alpes-Côte d'Azur",
+          addressCountry: "FR",
+        },
+      })}
+    />
+  </head>
+  <body class="min-h-screen overflow-x-hidden antialiased">
+    <slot />
+  </body>
+</html>

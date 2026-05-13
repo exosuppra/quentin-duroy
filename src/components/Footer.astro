@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-white/5 bg-black/30">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-fg-dim md:flex-row">
+    <div>
+      © {year} Quentin DUROY · Saint-Martin-de-Brômes · Provence
+    </div>
+    <div class="flex items-center gap-6">
+      <a
+        href="https://fr.linkedin.com/in/quentin-duroy"
+        target="_blank"
+        rel="noopener"
+        class="transition-colors hover:text-violet-300"
+      >
+        LinkedIn
+      </a>
+      <a href="/mentions-legales" class="transition-colors hover:text-violet-300">
+        Mentions légales
+      </a>
+      <span class="hidden sm:inline">
+        Astro · Tailwind · Cloudflare Pages
+      </span>
+    </div>
+  </div>
+</footer>

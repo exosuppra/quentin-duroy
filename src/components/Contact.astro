@@ -1,0 +1,70 @@
+---
+const email = "quentin.duroy28@gmail.com";
+const subject = encodeURIComponent("Nouveau projet — depuis quentin-duroy.fr");
+const body = encodeURIComponent(
+  "Bonjour Quentin,\n\nJ'aimerais discuter d'un projet :\n\n[décrivez-le en quelques mots]\n\nMerci.",
+);
+---
+
+<section
+  id="contact"
+  class="relative overflow-hidden border-t border-white/5 py-32 sm:py-40"
+>
+  <!-- Beams-inspired background -->
+  <div
+    aria-hidden
+    class="pointer-events-none absolute inset-0 -z-10 opacity-60"
+    style="background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(124,58,237,0.4) 0%, transparent 60%), radial-gradient(ellipse 50% 30% at 50% 100%, rgba(225,29,72,0.3) 0%, transparent 60%); filter: blur(40px);"
+  >
+  </div>
+
+  <div class="mx-auto max-w-3xl px-6 text-center">
+    <div class="inline-flex items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/5 px-3 py-1 text-xs font-medium uppercase tracking-[0.2em] text-rose-300">
+      Contact
+    </div>
+
+    <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+      Un projet à <span class="text-gradient">discuter</span> ?
+    </h2>
+
+    <p class="mx-auto mt-6 max-w-xl text-lg text-fg-muted">
+      Le meilleur moyen de me joindre, c'est par email. Je réponds sous 24h
+      ouvrées. Si vous préférez, on peut aussi se parler sur LinkedIn.
+    </p>
+
+    <div class="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+      <a
+        href={`mailto:${email}?subject=${subject}&body=${body}`}
+        class="group relative inline-flex min-w-[220px] items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-rose-600/30 transition-all hover:-translate-y-0.5 hover:shadow-violet-600/40"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden>
+          <path d="M2 6a2 2 0 012-2h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm2.5.5l7.5 5 7.5-5v-.5h-15v.5z" />
+        </svg>
+        Écrire un email
+      </a>
+
+      <a
+        href="https://fr.linkedin.com/in/quentin-duroy"
+        target="_blank"
+        rel="noopener"
+        class="inline-flex min-w-[220px] items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-base font-semibold text-white backdrop-blur transition-all hover:border-violet-400/50 hover:bg-violet-500/10"
+      >
+        <svg viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4" aria-hidden>
+          <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zm-9.5 15v-8H7v8h2.5zM8.25 8.75a1.45 1.45 0 100-2.9 1.45 1.45 0 000 2.9zM18 18v-4.5c0-2.07-1.1-3.05-2.6-3.05-1.2 0-1.75.66-2.05 1.13V10H11v8h2.5v-4.25c0-.94.18-1.85 1.34-1.85s1.16 1.08 1.16 1.91V18H18z" />
+        </svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <p class="mx-auto mt-12 max-w-md text-xs text-fg-dim">
+      Pour les projets longue durée et les sujets corporate (ERP, formations,
+      services managés), passez plutôt par{" "}
+      <a
+        href="https://logiq-ia.fr"
+        class="text-violet-300 underline-offset-4 transition-colors hover:text-violet-200 hover:underline"
+      >
+        LOGIQ IA
+      </a>, ma société.
+    </p>
+  </div>
+</section>
