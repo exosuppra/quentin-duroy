@@ -36,20 +36,30 @@ export default function AuroraBackground({
           "[mask-image:radial-gradient(ellipse_at_top,black_50%,transparent_75%)]",
         )}
         style={{
+          /* coucher de soleil sur Valensole : lavande -> terracotta -> ocre */
           background:
-            "conic-gradient(from 180deg at 50% 50%, #7c3aed, #c026d3, #e11d48, #7c3aed)",
+            "conic-gradient(from 180deg at 50% 50%, #7c3aed, #c026d3, #c2410c, #d97706, #7c3aed)",
           animation: "aurora 22s ease-in-out infinite",
-          filter: "blur(60px) saturate(1.2)",
+          filter: "blur(60px) saturate(1.15)",
         }}
       />
       {showRadialGradient && (
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,0.35), transparent 65%)",
-          }}
-        />
+        <>
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,0.35), transparent 65%)",
+            }}
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 40% at 50% 100%, rgba(217,119,6,0.18), transparent 65%)",
+            }}
+          />
+        </>
       )}
       <div
         className="absolute inset-0 opacity-[0.04]"

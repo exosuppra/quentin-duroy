@@ -10,19 +10,28 @@ const links = [
 <header class="fixed inset-x-0 top-0 z-50 transition-all" id="site-header">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
     <a href="#hero" class="group flex items-center gap-2 font-display text-sm font-semibold tracking-tight">
-      <span class="relative inline-flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-violet-600 to-rose-600 text-xs font-bold text-white shadow-lg shadow-violet-600/30 transition-transform group-hover:rotate-6">
+      <span
+        class="relative inline-flex h-7 w-7 items-center justify-center rounded-md text-xs font-bold text-white transition-transform group-hover:rotate-6"
+        style="background: linear-gradient(135deg, #7c3aed 0%, #c2410c 65%, #d97706 100%); box-shadow: 0 6px 18px -6px rgba(124,58,237,0.5);"
+      >
         QD
       </span>
       <span class="hidden sm:inline">quentin-duroy.fr</span>
     </a>
 
     <nav class="hidden md:block">
-      <ul class="flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-1.5 backdrop-blur-md">
+      <ul
+        class="flex items-center gap-1 rounded-full border px-2 py-1.5 backdrop-blur-md"
+        style="border-color: rgba(255,255,255,0.08); background: rgba(255,255,255,0.03);"
+      >
         {links.map((l) => (
           <li>
             <a
               href={l.href}
-              class="block rounded-full px-4 py-1.5 text-sm text-fg-muted transition-colors hover:bg-violet-500/15 hover:text-white"
+              class="block rounded-full px-4 py-1.5 text-sm transition-colors"
+              style="color: #e9d5b3;"
+              onmouseover="this.style.background='rgba(139,92,246,0.18)'; this.style.color='#fef3c7'"
+              onmouseout="this.style.background='transparent'; this.style.color='#e9d5b3'"
             >
               {l.label}
             </a>
@@ -33,7 +42,8 @@ const links = [
 
     <a
       href="#contact"
-      class="hidden rounded-full bg-gradient-to-r from-violet-600 to-rose-600 px-4 py-2 text-sm font-medium text-white shadow-lg shadow-violet-600/30 transition-all hover:-translate-y-0.5 hover:shadow-rose-600/40 sm:inline-block"
+      class="hidden rounded-full px-4 py-2 text-sm font-medium text-white transition-all hover:-translate-y-0.5 sm:inline-block"
+      style="background: linear-gradient(90deg, #7c3aed 0%, #c2410c 80%, #d97706 100%); box-shadow: 0 8px 20px -8px rgba(124,58,237,0.5);"
     >
       Me contacter
     </a>
@@ -58,7 +68,7 @@ const links = [
 <style>
   #site-header.scrolled {
     backdrop-filter: blur(16px);
-    background-color: rgba(10, 1, 24, 0.7);
+    background-color: rgba(21, 8, 17, 0.75);
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   }
 </style>

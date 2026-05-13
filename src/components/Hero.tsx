@@ -52,7 +52,7 @@ export default function Hero() {
           background: useTransform(
             [bgX, bgY],
             ([x, y]) =>
-              `radial-gradient(600px circle at ${x} ${y}, rgba(225,29,72,0.18), transparent 55%)`,
+              `radial-gradient(600px circle at ${x} ${y}, rgba(217,119,6,0.18), transparent 55%)`,
           ),
         }}
       />
@@ -62,17 +62,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-1.5 text-sm font-medium text-violet-200 backdrop-blur"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border border-lavande-500/30 bg-lavande-500/10 px-4 py-1.5 text-sm font-medium text-lavande-200 backdrop-blur"
+          style={{ borderColor: "rgba(139,92,246,0.35)", backgroundColor: "rgba(139,92,246,0.10)", color: "#ddd6fe" }}
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-500 opacity-75"></span>
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-rose-500"></span>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "#f97316" }}></span>
+            <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "#f97316" }}></span>
           </span>
-          Disponible pour de nouveaux projets
+          <span>☀️ Disponible pour de nouveaux projets</span>
         </motion.div>
 
         <h1 className="mb-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-          <span className="block text-fg-muted/70">Bonjour, je suis</span>
+          <span className="mb-3 block text-xs font-medium uppercase tracking-[0.3em] sm:text-sm" style={{ color: "#a8927a" }}>Bonjour, je suis</span>
           <span className="block">
             {titleLetters.map((c, i) => (
               <motion.span
@@ -86,8 +87,9 @@ export default function Hero() {
                 }}
                 className={cn(
                   "inline-block",
-                  i >= 8 ? "text-gradient" : "text-white",
+                  i >= 8 ? "text-gradient" : "",
                 )}
+                style={i < 8 ? { color: "#fef3c7" } : undefined}
               >
                 {c === " " ? " " : c}
               </motion.span>
@@ -99,11 +101,12 @@ export default function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="mx-auto mb-10 max-w-2xl text-lg text-fg-muted sm:text-xl"
+          className="mx-auto mb-10 max-w-2xl text-lg sm:text-xl"
+          style={{ color: "#e9d5b3" }}
         >
-          Chef de projet <span className="text-white">IA & développement web</span>.
-          J'aide les entreprises à automatiser leurs workflows et lancer leurs
-          produits IA.
+          Chef de projet <span style={{ color: "#fef3c7" }}>IA &amp; développement web</span>,
+          basé en Provence. J'aide les entreprises à <span style={{ color: "#fef3c7" }}>automatiser leurs workflows</span> et
+          lancer leurs produits IA — de l'idée à la production.
         </motion.p>
 
         <motion.div
@@ -114,7 +117,11 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-rose-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-violet-600/30 transition-all hover:shadow-rose-600/40 hover:-translate-y-0.5"
+            className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
+            style={{
+              background: "linear-gradient(90deg, #7c3aed 0%, #c026d3 35%, #c2410c 70%, #d97706 100%)",
+              boxShadow: "0 10px 30px -10px rgba(124,58,237,0.5), 0 0 0 1px rgba(255,255,255,0.06) inset",
+            }}
           >
             <span className="relative z-10">Discuter d'un projet</span>
             <svg
@@ -125,12 +132,16 @@ export default function Hero() {
             >
               <path d="M6 3l5 5-5 5V3z" />
             </svg>
-            <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-rose-600 via-fuchsia-600 to-violet-600 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100" />
+            <span
+              className="absolute inset-0 -translate-x-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
+              style={{ background: "linear-gradient(90deg, #d97706 0%, #c2410c 35%, #c026d3 70%, #7c3aed 100%)" }}
+            />
           </a>
 
           <a
             href="#projets"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-base font-semibold text-white backdrop-blur transition-all hover:border-violet-400/50 hover:bg-violet-500/10"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-8 py-3.5 text-base font-semibold backdrop-blur transition-all hover:-translate-y-0.5"
+            style={{ color: "#fef3c7" }}
           >
             Voir mes projets
             <svg

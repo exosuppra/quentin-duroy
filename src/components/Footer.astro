@@ -2,21 +2,33 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-white/5 bg-black/30">
-  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-fg-dim md:flex-row">
+<footer class="border-t" style="border-color: rgba(255,255,255,0.05); background: rgba(0,0,0,0.25);">
+  <div
+    class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm md:flex-row"
+    style="color: #a8927a;"
+  >
     <div>
-      © {year} Quentin DUROY · Saint-Martin-de-Brômes · Provence
+      © {year} Quentin DUROY · Saint-Martin-de-Brômes · Provence ☀️
     </div>
     <div class="flex items-center gap-6">
       <a
         href="https://fr.linkedin.com/in/quentin-duroy"
         target="_blank"
         rel="noopener"
-        class="transition-colors hover:text-violet-300"
+        class="transition-colors"
+        style="color: inherit;"
+        onmouseover="this.style.color='#c4b5fd'"
+        onmouseout="this.style.color=''"
       >
         LinkedIn
       </a>
-      <a href="/mentions-legales" class="transition-colors hover:text-violet-300">
+      <a
+        href="/mentions-legales"
+        class="transition-colors"
+        style="color: inherit;"
+        onmouseover="this.style.color='#c4b5fd'"
+        onmouseout="this.style.color=''"
+      >
         Mentions légales
       </a>
       <span class="hidden sm:inline">
