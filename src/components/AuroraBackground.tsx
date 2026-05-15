@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { cn } from "../lib/cn";
 
 /**
- * Aurora background — strict palette : violet + red on white.
+ * Aurora background : strict palette : violet + red on white.
  * Watercolor-style soft washes, very subtle on light bg.
  */
 export default function AuroraBackground({

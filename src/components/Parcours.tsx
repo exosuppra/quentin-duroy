@@ -160,13 +160,13 @@ export default function Parcours() {
       </div>
 
       <div ref={ref} className="relative">
-        {/* Static vertical line — background */}
+        {/* Static vertical line : background */}
         <div
           aria-hidden
           className="absolute left-[10px] top-2 h-full w-[2px] -translate-x-1/2"
           style={{ background: "#e5e5e5" }}
         />
-        {/* Animated gradient line — fills on scroll */}
+        {/* Animated gradient line : fills on scroll */}
         <motion.div
           aria-hidden
           className="absolute left-[10px] top-2 h-full w-[2px] origin-top -translate-x-1/2"

@@ -295,7 +295,7 @@ export default function Projects() {
         </h2>
         <p className="mt-4 text-lg" style={{ color: "#404040" }}>
           De l'idée au déploiement edge en quelques semaines. Voici une
-          sélection de ce sur quoi je travaille en ce moment — dont{" "}
+          sélection de ce sur quoi je travaille en ce moment, dont{" "}
           <a
             href="https://manga-ai.fr"
             target="_blank"
