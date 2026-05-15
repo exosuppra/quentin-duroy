@@ -1,83 +1,63 @@
-import { MeshGradient } from "@paper-design/shaders-react";
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { GrainGradient } from "@paper-design/shaders-react";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 import { cn } from "../lib/cn";
 
 /**
- * Hero (v6):
- *  - Paper Shaders MeshGradient as background (violet/red/white WebGL)
- *  - 2-column layout: text left, portrait right
- *  - Portrait floats with subtle parallax / mouse tilt
- *  - Word-aware name animation
+ * Hero v7:
+ *  - Paper Shaders GrainGradient bg (subtle, paper-like, less busy than MeshGradient)
+ *  - 2-column layout but portrait tightly framed + smaller
+ *  - Floating tech badges around portrait (Make, Anthropic, Lovable, Manga AI)
+ *  - No tilt animation (was making it look off)
+ *  - object-position: top to keep face high in the frame
  */
 export default function Hero() {
-  const wrapRef = useRef<HTMLDivElement>(null);
-
-  // Mouse for portrait parallax tilt
-  const mx = useMotionValue(0.5);
-  const my = useMotionValue(0.5);
-  const mxs = useSpring(mx, { stiffness: 60, damping: 18 });
-  const mys = useSpring(my, { stiffness: 60, damping: 18 });
-  const rotateY = useTransform(mxs, [0, 1], [6, -6]);
-  const rotateX = useTransform(mys, [0, 1], [-4, 4]);
-  const portraitY = useTransform(mys, [0, 1], [4, -4]);
-
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
-  function onMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (reduced) return;
-    const rect = wrapRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    mx.set((e.clientX - rect.left) / rect.width);
-    my.set((e.clientY - rect.top) / rect.height);
-  }
-
   const words = ["Quentin", "DUROY"];
   let globalIndex = 0;
+
+  const badges = [
+    { label: "Make.com", top: "8%", left: "-12%", delay: 0.4, accent: "#7c3aed" },
+    { label: "Anthropic", top: "30%", right: "-14%", delay: 0.55, accent: "#dc2626" },
+    { label: "Lovable Top 1%", top: "62%", left: "-16%", delay: 0.7, accent: "#c026d3" },
+    { label: "Manga AI · 240 p.", top: "84%", right: "-10%", delay: 0.85, accent: "#7c3aed" },
+  ];
 
   return (
     <section
       id="hero"
-      ref={wrapRef}
-      onMouseMove={onMove}
       className="relative isolate overflow-hidden"
       style={{ minHeight: "100svh" }}
     >
-      {/* WebGL shader background */}
+      {/* Paper Shaders bg: subtle grain gradient, paper-like */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <MeshGradient
+        <GrainGradient
           style={{ width: "100%", height: "100%" }}
-          colors={["#ffffff", "#ede9fe", "#fbcfe8", "#fecaca", "#7c3aed", "#dc2626"]}
-          speed={reduced ? 0 : 0.18}
-          distortion={1}
-          swirl={0.55}
+          colorBack="#ffffff"
+          colors={["#ede9fe", "#fbcfe8", "#fecaca", "#7c3aed", "#dc2626"]}
+          softness={0.9}
+          intensity={0.45}
+          noise={0.6}
+          shape="corners"
+          speed={reduced ? 0 : 0.15}
         />
-        {/* White overlay to keep readability */}
+        {/* readability veil */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0.65) 100%)",
-          }}
-        />
-        {/* Subtle grain */}
-        <div
-          className="absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E\")",
-            backgroundSize: "200px 200px",
+              "linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.30) 50%, rgba(255,255,255,0.65) 100%)",
           }}
         />
       </div>
 
-      <div className="mx-auto grid min-h-[100svh] w-full max-w-6xl items-center gap-12 px-6 pb-20 pt-32 sm:pt-36 lg:grid-cols-[1.15fr_1fr] lg:gap-16 lg:py-32">
+      <div className="mx-auto grid min-h-[100svh] w-full max-w-6xl items-center gap-12 px-6 pb-24 pt-32 sm:pt-36 lg:grid-cols-[1.2fr_1fr] lg:gap-20 lg:py-32">
         {/* TEXT COLUMN */}
         <div className="relative z-10 text-center lg:text-left">
-          {/* Available badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -102,8 +82,7 @@ export default function Hero() {
             <span>Disponible pour de nouveaux projets</span>
           </motion.div>
 
-          {/* Title */}
-          <h1 className="mb-6 text-balance text-5xl font-bold leading-[1.05] sm:text-6xl md:text-7xl lg:text-8xl">
+          <h1 className="mb-6 text-balance text-5xl font-bold leading-[1.05] sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl">
             <span
               className="mb-3 block text-xs font-medium uppercase tracking-[0.3em] sm:text-sm"
               style={{ color: "#737373" }}
@@ -147,24 +126,30 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
-            className="mx-auto mb-10 max-w-2xl text-lg sm:text-xl lg:mx-0"
+            className="mx-auto mb-4 max-w-2xl text-lg sm:text-xl lg:mx-0"
             style={{ color: "#404040" }}
           >
-            Chef de projet{" "}
             <span style={{ color: "#0a0a0a", fontWeight: 600 }}>
-              IA &amp; développement web
-            </span>
-            , basé en Provence. J'aide les entreprises à{" "}
-            <span style={{ color: "#0a0a0a", fontWeight: 600 }}>
-              automatiser leurs workflows
+              Référent IA &amp; Chef de Projet Web
             </span>{" "}
-            et lancer leurs produits IA, de l'idée à la production.
+            à l'Office de Tourisme du Pays de Manosque, fondateur de LOGIQ IA.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.82, duration: 0.6 }}
+            className="mx-auto mb-10 max-w-2xl text-base sm:text-lg lg:mx-0"
+            style={{ color: "#737373" }}
+          >
+            J'aide les entreprises à automatiser leurs workflows et lancer leurs
+            produits IA, de l'idée à la production.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
+            transition={{ delay: 0.95, duration: 0.6 }}
             className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start"
           >
             <a
@@ -222,60 +207,95 @@ export default function Hero() {
           initial={{ opacity: 0, x: 30, scale: 0.96 }}
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            perspective: 1200,
-          }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
+          className="relative mx-auto w-full max-w-sm lg:max-w-none lg:justify-self-end"
         >
-          <motion.div
-            style={{
-              rotateX,
-              rotateY,
-              y: portraitY,
-              transformStyle: "preserve-3d",
-            }}
-            className="relative"
-          >
-            {/* Color halo behind the bust */}
+          {/* Outer animated gradient ring */}
+          <div className="relative mx-auto" style={{ width: "min(100%, 380px)" }}>
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 -z-10 scale-90 rounded-[50%] opacity-70 blur-3xl"
-              style={{
-                background:
-                  "radial-gradient(ellipse at 30% 30%, rgba(124,58,237,0.50), transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(220,38,38,0.40), transparent 60%)",
-              }}
-            />
-            {/* Animated ring behind */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[110%] w-[80%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-2xl"
+              className="pointer-events-none absolute -inset-3 rounded-[2.2rem] opacity-70 blur-2xl"
               style={{
                 background:
                   "conic-gradient(from 0deg, #7c3aed, #c026d3, #dc2626, #7c3aed)",
-                animation: "aurora 20s linear infinite",
+                animation: reduced ? "none" : "aurora 20s linear infinite",
               }}
             />
 
-            {/* The bust itself */}
-            <img
-              src="/quentin-bust.png"
-              alt="Quentin DUROY, chef de projet IA"
-              width={1024}
-              height={1536}
-              loading="eager"
-              decoding="async"
-              className="relative mx-auto block h-auto w-full max-w-[480px] select-none"
+            {/* Frame card */}
+            <div
+              className="relative overflow-hidden rounded-[2rem] border"
               style={{
-                filter:
-                  "drop-shadow(0 30px 50px rgba(124,58,237,0.30)) drop-shadow(0 20px 30px rgba(220,38,38,0.22))",
+                background: "#ffffff",
+                borderColor: "#e5e5e5",
+                aspectRatio: "3 / 4",
+                boxShadow:
+                  "0 30px 60px -20px rgba(124,58,237,0.30), 0 18px 40px -15px rgba(220,38,38,0.20), 0 0 0 1px rgba(255,255,255,0.6) inset",
               }}
-              draggable={false}
-            />
-          </motion.div>
+            >
+              {/* Soft gradient halo inside the frame */}
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "radial-gradient(ellipse 70% 50% at 50% 100%, rgba(124,58,237,0.16), transparent 65%), radial-gradient(ellipse 70% 40% at 50% 0%, rgba(220,38,38,0.10), transparent 65%)",
+                }}
+              />
+              <img
+                src="/quentin-bust.png"
+                alt="Quentin DUROY"
+                width={1024}
+                height={1536}
+                loading="eager"
+                decoding="async"
+                className="relative block h-full w-full select-none"
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center 18%",
+                  filter:
+                    "drop-shadow(0 8px 16px rgba(124,58,237,0.18)) drop-shadow(0 4px 8px rgba(220,38,38,0.12))",
+                }}
+                draggable={false}
+              />
+            </div>
+
+            {/* Floating tech badges */}
+            {badges.map((b) => (
+              <motion.div
+                key={b.label}
+                initial={{ opacity: 0, scale: 0.6, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  delay: b.delay,
+                  duration: 0.55,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="absolute hidden whitespace-nowrap rounded-full border bg-white px-3 py-1.5 text-xs font-semibold shadow-lg sm:block"
+                style={{
+                  top: b.top,
+                  left: (b as { left?: string }).left,
+                  right: (b as { right?: string }).right,
+                  borderColor: `${b.accent}55`,
+                  color: b.accent,
+                  boxShadow: `0 10px 25px -10px ${b.accent}40, 0 4px 10px -4px rgba(0,0,0,0.08)`,
+                  animation: reduced
+                    ? "none"
+                    : `float ${4 + (badges.indexOf(b) % 3)}s ease-in-out infinite`,
+                  animationDelay: `${badges.indexOf(b) * 0.3}s`,
+                }}
+              >
+                <span
+                  className="mr-1.5 inline-block h-1.5 w-1.5 rounded-full align-middle"
+                  style={{ background: b.accent }}
+                />
+                {b.label}
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator at section bottom */}
+      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

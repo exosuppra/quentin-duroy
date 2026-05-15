@@ -24,6 +24,35 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    slug: "apidia",
+    title: "Apidia",
+    tagline: "Plateforme IA d'auto-gestion des données touristiques",
+    description:
+      "Plateforme IA livrée à l'Office de Tourisme de Manosque qui copie, enrichit et resynchronise les fiches Apidae automatiquement. Automatisation de 120 modules Make. Livrée le 14 janvier 2026, soit 9 mois d'avance sur le planning. Valeur marché estimée : 50 000 €.",
+    tech: ["Make", "Lovable", "OpenAI", "Apidae API", "Postgres"],
+    accent: "violet",
+  },
+  {
+    slug: "oto",
+    title: "OTO · Agent IA",
+    tagline: "Premier agent IA en OT français",
+    description:
+      "Premier agent IA déployé dans un office de tourisme français (mars 2025). OTO assiste la communication digitale et marketing, gère les ordres de mission via Make et orchestre les pipelines internes. Suivi de OTO_Mail (assistant email).",
+    tech: ["Make", "ChatGPT Team", "Anthropic", "Webhooks"],
+    accent: "fuchsia",
+  },
+  {
+    slug: "catalogue-formation",
+    title: "Catalogue de formation IA",
+    tagline: "Construit en partenariat avec la FROT PACA",
+    description:
+      "Catalogue de formations IA pour les offices de tourisme et acteurs touristiques de PACA. Webinaire d'ouverture « Œil de l'expert » du 13 nov. 2025 : 130 spectateurs en direct, 4,8/5 de satisfaction, plus de 300 replays YouTube (record FROT).",
+    tech: ["Lovable", "FROT PACA", "Format pédagogique"],
+    href: "https://formation-ot-paysdemanosque.lovable.app/",
+    hrefLabel: "Voir le catalogue",
+    accent: "violet",
+  },
+  {
     slug: "traducteur-surimpression",
     title: "Traducteur en surimpression",
     tagline: "OCR + traduction temps réel",
@@ -42,30 +71,12 @@ export const projects: Project[] = [
     accent: "fuchsia",
   },
   {
-    slug: "erp-crm",
-    title: "ERP & CRM sur-mesure",
-    tagline: "Solutions clients secteur retail & services",
-    description:
-      "Conception et déploiement d'outils internes (gestion stock, suivi commerciaux, pipeline ventes) adaptés aux PME. Intégration aux outils existants (Microsoft 365, Make).",
-    tech: ["Next.js", "PostgreSQL", "Make", "Microsoft Graph"],
-    accent: "violet",
-  },
-  {
-    slug: "formations-ia",
-    title: "Formations IA",
-    tagline: "En partenariat avec SUPDEWEB",
-    description:
-      "Modules de formation destinés aux étudiants et professionnels sur l'intégration concrète de l'IA dans les workflows : prompt engineering, API, agents, automatisation.",
-    tech: ["Pédagogie", "Anthropic", "OpenAI", "n8n", "Make"],
-    accent: "rose",
-  },
-  {
     slug: "ce-site",
     title: "quentin-duroy.fr",
     tagline: "Méta-référence amusante",
     description:
-      "Ce site lui-même. Astro statique + Tailwind 4 + motion design rouge/violet. Hébergé en edge sur Cloudflare Pages. 0 framework JS sur les pages, des îlots React pour les animations clés.",
-    tech: ["Astro", "Tailwind", "Motion", "Cloudflare Pages"],
-    accent: "fuchsia",
+      "Ce site lui-même. Astro statique + Tailwind 4 + Motion + Paper Shaders. Hébergé en edge sur Cloudflare Pages. Quasi 0 framework JS sur les pages, des îlots React pour les animations clés.",
+    tech: ["Astro", "Tailwind", "Motion", "Paper Shaders", "Cloudflare"],
+    accent: "rose",
   },
 ];
