@@ -59,9 +59,50 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
         <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6 inline-block"
+        >
+          <div className="relative inline-block">
+            {/* Glowing gradient ring */}
+            <span
+              aria-hidden
+              className="absolute -inset-1 rounded-full blur-md"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #7c3aed, #c026d3, #c2410c, #d97706, #7c3aed)",
+                animation: "aurora 16s linear infinite",
+              }}
+            />
+            <span
+              aria-hidden
+              className="absolute -inset-[3px] rounded-full"
+              style={{
+                background:
+                  "conic-gradient(from 0deg, #7c3aed, #c026d3, #c2410c, #d97706, #7c3aed)",
+              }}
+            />
+            <img
+              src="/quentin.jpg"
+              alt="Quentin DUROY"
+              width={96}
+              height={96}
+              loading="eager"
+              className="relative h-24 w-24 rounded-full object-cover"
+              style={{
+                background: "#faf5e8",
+                boxShadow:
+                  "0 0 0 4px #faf5e8, 0 18px 40px -10px rgba(124,58,237,0.35), 0 8px 20px -8px rgba(194,65,12,0.30)",
+              }}
+            />
+          </div>
+        </motion.div>
+
+        <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
           className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium backdrop-blur"
           style={{
             borderColor: "rgba(124,58,237,0.30)",

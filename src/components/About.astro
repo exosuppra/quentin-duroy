@@ -1,7 +1,7 @@
 ---
 const paragraphs = [
-  "Installé à Saint-Martin-de-Brômes, entre les champs de lavande de Valensole et les gorges du Verdon, j'accompagne des entreprises dans leur transformation IA et leur présence en ligne. Mon approche combine ingénierie produit, intégration multi-modèles et automatisation des workflows métier.",
-  "Diplômé de SUPDEWEB, j'ai forgé mon expertise sur des projets web complexes (SaaS, e-commerce, intranets) avant de me spécialiser dans l'IA générative et l'agentic automation. Aujourd'hui, je conçois et orchestre plus de 60 scénarios Make actifs en production — du SEO à la data en passant par les agents IA conversationnels.",
+  "Installé à Saint-Martin-de-Brômes, entre les champs de lavande de Valensole et les gorges du Verdon, je suis Référent en Intelligence Artificielle & Chef de Projet Web à l'Office de Tourisme du Pays de Manosque, et fondateur de LOGIQ IA. Mon métier : transformer une intuition produit en système IA qui tourne en production.",
+  "Après avoir automatisé environ 80 % de mes tâches de chef de projet web, je pilote aujourd'hui la stratégie IA, les automatisations, les agents IA et les MCP — pour l'OT, ses acteurs touristiques locaux et les entreprises que j'accompagne via LOGIQ IA. Diplômé du Master 360° Digital de SUPDEWEB et d'une Licence à Aix-Marseille Université, j'ai démarré ma carrière à Gréoux-les-Bains chez Entre Lavandes et Verdon — la Provence ne quitte jamais mon code.",
   "Je travaille en direct avec les fondateurs et les dirigeants, sans intermédiaire. Mes clients sont partout en France et à l'international : la Provence donne le rythme, le numérique abolit la distance.",
 ];
 ---
@@ -25,15 +25,15 @@ const paragraphs = [
     </div>
 
     <div class="space-y-6 text-lg leading-relaxed" style="color: #4a3527;">
-      {paragraphs.map((p) => <p>{p}</p>)}
+      {paragraphs.map((p) => <p set:html={p} />)}
 
       <div
         class="mt-10 grid grid-cols-2 gap-6 border-t pt-8 sm:grid-cols-4"
         style="border-color: rgba(31,16,6,0.10);"
       >
         <div>
-          <div class="text-3xl font-bold" style="color: #1f1006;">8+</div>
-          <div class="mt-1 text-sm" style="color: #8a7868;">années web</div>
+          <div class="text-3xl font-bold" style="color: #1f1006;">~80 %</div>
+          <div class="mt-1 text-sm" style="color: #8a7868;">de mes tâches automatisées</div>
         </div>
         <div>
           <div class="text-3xl font-bold" style="color: #1f1006;">60+</div>
@@ -44,8 +44,8 @@ const paragraphs = [
           <div class="mt-1 text-sm" style="color: #8a7868;">manga généré par IA</div>
         </div>
         <div>
-          <div class="text-3xl font-bold" style="color: #1f1006;">FR/EN/ES</div>
-          <div class="mt-1 text-sm" style="color: #8a7868;">trilingue</div>
+          <div class="text-3xl font-bold" style="color: #1f1006;">7+ ans</div>
+          <div class="mt-1 text-sm" style="color: #8a7868;">d'expérience digitale</div>
         </div>
       </div>
     </div>

@@ -4,8 +4,10 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import About from "../components/About.astro";
 import Skills from "../components/Skills.astro";
+import Certifications from "../components/Certifications.astro";
 import Contact from "../components/Contact.astro";
 import Hero from "../components/Hero.tsx";
+import Parcours from "../components/Parcours.tsx";
 import Projects from "../components/Projects.tsx";
 ---
 
@@ -14,7 +16,9 @@ import Projects from "../components/Projects.tsx";
   <main>
     <Hero client:load />
     <About />
+    <Parcours client:visible />
     <Skills />
+    <Certifications />
     <Projects client:visible />
     <Contact />
   </main>

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Quentin DUROY — Chef de projet IA & développement web | Provence",
-  description = "Ingénieur projet IA basé en Provence. J'accompagne les entreprises sur l'automatisation, l'intégration IA et le développement web. Découvrez mes projets et services.",
+  title = "Quentin DUROY — Référent IA & Chef de projet Web | Provence",
+  description = "Référent IA à l'Office de Tourisme de Manosque, fondateur de LOGIQ IA. Make.com, agents IA, MCP, automatisation. Basé à Saint-Martin-de-Brômes, intervient partout en France.",
   canonical = "https://quentin-duroy.fr/",
 } = Astro.props;
 ---
@@ -43,21 +43,61 @@ const {
         "@type": "Person",
         name: "Quentin DUROY",
         url: "https://quentin-duroy.fr",
-        image: "https://quentin-duroy.fr/avatar.jpg",
-        jobTitle: "Chef de projet IA et développement web",
-        worksFor: {
-          "@type": "Organization",
-          name: "LOGIQ IA",
-          url: "https://logiq-ia.fr",
-        },
-        alumniOf: {
-          "@type": "EducationalOrganization",
-          name: "SUPDEWEB",
-        },
+        image: "https://quentin-duroy.fr/quentin.jpg",
+        jobTitle:
+          "Référent IA & Chef de Projet Web · Fondateur LOGIQ IA",
+        description:
+          "Chef de projet IA basé en Provence. Fondateur de LOGIQ IA, Référent IA à l'Office de Tourisme du Pays de Manosque. Spécialiste Make.com, agents IA, automatisation des workflows.",
+        worksFor: [
+          {
+            "@type": "Organization",
+            name: "LOGIQ IA",
+            url: "https://logiq-ia.fr",
+          },
+          {
+            "@type": "Organization",
+            name: "Office de Tourisme et des Congrès du Pays de Manosque",
+          },
+        ],
+        alumniOf: [
+          {
+            "@type": "EducationalOrganization",
+            name: "SUPDEWEB",
+          },
+          {
+            "@type": "EducationalOrganization",
+            name: "Aix-Marseille Université",
+          },
+        ],
+        knowsAbout: [
+          "Intelligence artificielle",
+          "Automatisation des processus",
+          "Make.com",
+          "Agents IA",
+          "MCP",
+          "Gestion de projet web",
+          "SEO",
+          "Anthropic Claude",
+        ],
+        hasCredential: [
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "AI Fluency Framework & Foundations",
+            credentialCategory: "certification",
+            recognizedBy: { "@type": "Organization", name: "Anthropic" },
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "Vibe Coding L5: Diamond",
+            credentialCategory: "certification",
+            recognizedBy: { "@type": "Organization", name: "Lovable" },
+          },
+        ],
         sameAs: [
           "https://fr.linkedin.com/in/quentin-duroy",
           "https://manga-ai.fr",
           "https://logiq-ia.fr",
+          "https://github.com/exosuppra",
         ],
         address: {
           "@type": "PostalAddress",
