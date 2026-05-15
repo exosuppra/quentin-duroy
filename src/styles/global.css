@@ -111,6 +111,37 @@
   }
 }
 
+/* Cosmic hero (Horizon-style, palette violet/red) */
+.cosmic-hero {
+  background: linear-gradient(180deg, #08010f 0%, #1a0a1f 45%, #2a0815 100%);
+  color: #ffffff;
+}
+.cosmic-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-size: clamp(3.5rem, 12vw, 9rem);
+  perspective: 1000px;
+}
+.cosmic-title .title-char {
+  display: inline-block;
+  cursor: default;
+  background: linear-gradient(180deg, #ffffff 0%, #fce7f3 60%, #fecaca 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 60px rgba(220, 38, 38, 0.40);
+  transition: transform 0.4s ease, text-shadow 0.4s ease;
+}
+.cosmic-title .title-char:hover {
+  text-shadow: 0 0 80px rgba(220, 38, 38, 0.85);
+  transform: translateY(-6px) rotateX(-8deg);
+}
+
 @keyframes aurora {
   0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
   25% { transform: translate(8%, -4%) rotate(45deg) scale(1.1); }
