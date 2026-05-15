@@ -3,19 +3,19 @@ import { useRef } from "react";
 import { parcours, type ParcoursEntry } from "../data/parcours";
 
 const accentColor: Record<ParcoursEntry["accent"], string> = {
-  lavande: "#7c3aed",
-  terracotta: "#c2410c",
-  ocre: "#d97706",
+  lavande: "#7c3aed",      // violet
+  terracotta: "#dc2626",   // red
+  ocre: "#c026d3",         // fuchsia (transition violet↔red)
 };
 const accentBg: Record<ParcoursEntry["accent"], string> = {
-  lavande: "rgba(124,58,237,0.08)",
-  terracotta: "rgba(194,65,12,0.08)",
-  ocre: "rgba(217,119,6,0.08)",
+  lavande: "rgba(124,58,237,0.07)",
+  terracotta: "rgba(220,38,38,0.06)",
+  ocre: "rgba(192,38,211,0.06)",
 };
 const accentBorder: Record<ParcoursEntry["accent"], string> = {
-  lavande: "rgba(124,58,237,0.28)",
-  terracotta: "rgba(194,65,12,0.30)",
-  ocre: "rgba(217,119,6,0.32)",
+  lavande: "rgba(124,58,237,0.30)",
+  terracotta: "rgba(220,38,38,0.30)",
+  ocre: "rgba(192,38,211,0.28)",
 };
 
 function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number }) {
@@ -30,7 +30,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
       {/* Dot */}
       <span
         className="absolute left-[10px] top-[6px] flex h-4 w-4 -translate-x-1/2 items-center justify-center rounded-full"
-        style={{ background: "#faf5e8" }}
+        style={{ background: "#ffffff" }}
       >
         <span
           className="absolute inline-flex h-4 w-4 rounded-full"
@@ -43,7 +43,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
           className="relative inline-flex h-2.5 w-2.5 rounded-full"
           style={{
             background: accentColor[entry.accent],
-            boxShadow: `0 0 0 3px #faf5e8, 0 0 0 5px ${accentColor[entry.accent]}33`,
+            boxShadow: `0 0 0 3px #ffffff, 0 0 0 5px ${accentColor[entry.accent]}33`,
           }}
         />
         {entry.type === "current" && (
@@ -57,7 +57,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
       <div
         className="rounded-2xl border p-5 backdrop-blur transition-all sm:p-6"
         style={{
-          borderColor: "rgba(31,16,6,0.10)",
+          borderColor: "#e5e5e5",
           background: "rgba(255,255,255,0.70)",
         }}
       >
@@ -75,7 +75,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
           {entry.type === "current" && (
             <span
               className="text-xs font-medium uppercase tracking-wider"
-              style={{ color: "#8a7868" }}
+              style={{ color: "#737373" }}
             >
               ● en cours
             </span>
@@ -84,7 +84,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
 
         <h3
           className="mt-3 text-xl font-bold tracking-tight sm:text-2xl"
-          style={{ color: "#1f1006" }}
+          style={{ color: "#0a0a0a" }}
         >
           {entry.role}
         </h3>
@@ -94,7 +94,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
         >
           {entry.company}
           {entry.location && (
-            <span style={{ color: "#8a7868", fontWeight: 400 }}>
+            <span style={{ color: "#737373", fontWeight: 400 }}>
               {" · "}
               {entry.location}
             </span>
@@ -106,7 +106,7 @@ function TimelineItem({ entry, index }: { entry: ParcoursEntry; index: number })
             <li
               key={h}
               className="flex gap-2 text-sm leading-relaxed"
-              style={{ color: "#4a3527" }}
+              style={{ color: "#404040" }}
             >
               <span
                 aria-hidden
@@ -148,11 +148,11 @@ export default function Parcours() {
         </div>
         <h2
           className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
-          style={{ color: "#1f1006" }}
+          style={{ color: "#0a0a0a" }}
         >
           Du <span className="text-gradient">Verdon</span> à l'IA.
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base" style={{ color: "#4a3527" }}>
+        <p className="mx-auto mt-4 max-w-xl text-base" style={{ color: "#404040" }}>
           Six rôles en sept ans, tous tournés autour de la même boussole :
           livrer des produits digitaux qui simplifient la vie de ceux qui les
           utilisent.
@@ -164,7 +164,7 @@ export default function Parcours() {
         <div
           aria-hidden
           className="absolute left-[10px] top-2 h-full w-[2px] -translate-x-1/2"
-          style={{ background: "rgba(31,16,6,0.10)" }}
+          style={{ background: "#e5e5e5" }}
         />
         {/* Animated gradient line — fills on scroll */}
         <motion.div
@@ -173,7 +173,7 @@ export default function Parcours() {
           style={{
             scaleY: lineScale,
             background:
-              "linear-gradient(to bottom, #7c3aed 0%, #c026d3 35%, #c2410c 70%, #d97706 100%)",
+              "linear-gradient(to bottom, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
           }}
         />
 

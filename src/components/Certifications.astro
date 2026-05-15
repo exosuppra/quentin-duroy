@@ -35,19 +35,19 @@ const certs = [
 ];
 
 const accentColor: Record<string, string> = {
-  lavande: "#7c3aed",
-  terracotta: "#c2410c",
-  ocre: "#d97706",
+  lavande: "#7c3aed",       // violet
+  terracotta: "#dc2626",    // red
+  ocre: "#c026d3",          // fuchsia midpoint
 };
 const accentBg: Record<string, string> = {
-  lavande: "rgba(124,58,237,0.08)",
-  terracotta: "rgba(194,65,12,0.08)",
-  ocre: "rgba(217,119,6,0.08)",
+  lavande: "rgba(124,58,237,0.07)",
+  terracotta: "rgba(220,38,38,0.06)",
+  ocre: "rgba(192,38,211,0.06)",
 };
 const accentBorder: Record<string, string> = {
   lavande: "rgba(124,58,237,0.30)",
-  terracotta: "rgba(194,65,12,0.32)",
-  ocre: "rgba(217,119,6,0.34)",
+  terracotta: "rgba(220,38,38,0.30)",
+  ocre: "rgba(192,38,211,0.28)",
 };
 ---
 
@@ -59,7 +59,7 @@ const accentBorder: Record<string, string> = {
   <div
     aria-hidden
     class="pointer-events-none absolute inset-x-0 top-1/3 -z-10 h-72 opacity-25"
-    style="background: radial-gradient(ellipse at 30% 50%, #a78bfa 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #fb923c 0%, transparent 60%); filter: blur(80px);"
+    style="background: radial-gradient(ellipse at 30% 50%, #a78bfa 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #f87171 0%, transparent 60%); filter: blur(80px);"
   >
   </div>
 
@@ -67,14 +67,14 @@ const accentBorder: Record<string, string> = {
     <div class="mb-16 text-center">
       <div
         class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
-        style="border-color: rgba(217,119,6,0.30); background: rgba(217,119,6,0.07); color: #b45309;"
+        style="border-color: rgba(220,38,38,0.30); background: rgba(220,38,38,0.05); color: #b91c1c;"
       >
         Certifications
       </div>
-      <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl" style="color: #1f1006;">
+      <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl" style="color: #0a0a0a;">
         Une <span class="text-gradient">expertise</span> reconnue.
       </h2>
-      <p class="mx-auto mt-4 max-w-xl text-base" style="color: #4a3527;">
+      <p class="mx-auto mt-4 max-w-xl text-base" style="color: #404040;">
         Anthropic, Lovable, SUPDEWEB, Aix-Marseille — quatre tampons qui
         attestent que la pratique suit la théorie.
       </p>
@@ -85,9 +85,9 @@ const accentBorder: Record<string, string> = {
         certs.map((c, i) => (
           <article
             class="group relative flex flex-col rounded-2xl border p-6 transition-all hover:-translate-y-1"
-            style={`border-color: rgba(31,16,6,0.10); background: rgba(255,255,255,0.70); box-shadow: 0 6px 18px -10px rgba(31,16,6,0.10); animation: float ${5 + (i % 3)}s ease-in-out infinite; animation-delay: ${i * 200}ms;`}
+            style={`border-color: #e5e5e5; background: rgba(255,255,255,0.70); box-shadow: 0 6px 18px -10px #e5e5e5; animation: float ${5 + (i % 3)}s ease-in-out infinite; animation-delay: ${i * 200}ms;`}
             onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'; this.style.boxShadow='0 14px 30px -12px ${accentColor[c.accent]}40'`}
-            onmouseout={`this.style.borderColor='rgba(31,16,6,0.10)'; this.style.boxShadow='0 6px 18px -10px rgba(31,16,6,0.10)'`}
+            onmouseout={`this.style.borderColor='#e5e5e5'; this.style.boxShadow='0 6px 18px -10px #e5e5e5'`}
           >
             {/* Badge */}
             <div class="mb-4 flex items-center justify-between">
@@ -105,7 +105,7 @@ const accentBorder: Record<string, string> = {
               </span>
             </div>
 
-            <h3 class="text-base font-bold leading-tight" style="color: #1f1006;">
+            <h3 class="text-base font-bold leading-tight" style="color: #0a0a0a;">
               {c.name}
             </h3>
             <p
@@ -114,7 +114,7 @@ const accentBorder: Record<string, string> = {
             >
               {c.issuer}
             </p>
-            <p class="mt-3 flex-1 text-sm leading-relaxed" style="color: #4a3527;">
+            <p class="mt-3 flex-1 text-sm leading-relaxed" style="color: #404040;">
               {c.description}
             </p>
           </article>

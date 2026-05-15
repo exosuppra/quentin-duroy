@@ -2,42 +2,43 @@
 @import "@fontsource-variable/inter";
 
 @theme {
-  /* Palette Provence — plein soleil sur pierre claire */
-  --color-bg: #faf5e8;            /* lin / pierre de Bourges */
-  --color-bg-2: #f5ead2;          /* surface secondaire, cream chaud */
-  --color-surface: #fffaf0;       /* cards crème */
-  --color-surface-2: #ede0c0;     /* surface enfoncée */
+  /* Palette stricte : rouge / violet / gris / blanc / noir */
+  --color-bg: #ffffff;            /* blanc pur */
+  --color-bg-2: #fafafa;          /* gris très clair (zinc 50) */
+  --color-surface: #ffffff;       /* surfaces principales */
+  --color-surface-2: #f5f5f5;     /* surface enfoncée (neutral 100) */
 
-  --color-fg: #1f1006;            /* terre brûlée (texte principal) */
-  --color-fg-muted: #4a3527;      /* sépia */
-  --color-fg-dim: #8a7868;        /* lin gris doré */
-  --color-fg-faint: #b8a98e;      /* sable très clair */
+  --color-fg: #0a0a0a;            /* texte principal — noir */
+  --color-fg-muted: #404040;      /* gris foncé (neutral 700) */
+  --color-fg-dim: #737373;        /* gris moyen (neutral 500) */
+  --color-fg-faint: #a3a3a3;      /* gris clair (neutral 400) */
 
-  /* Lavande (Valensole) */
-  --color-lavande-50: #f5f3ff;
-  --color-lavande-100: #ede9fe;
-  --color-lavande-400: #a78bfa;
-  --color-lavande-500: #8b5cf6;
-  --color-lavande-600: #7c3aed;
-  --color-lavande-700: #6d28d9;
-  --color-lavande-900: #4c1d95;
+  --color-border: #e5e5e5;        /* neutral 200 */
+  --color-border-strong: #d4d4d4; /* neutral 300 */
+
+  /* Violet */
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-300: #c4b5fd;
   --color-violet-400: #a78bfa;
   --color-violet-500: #8b5cf6;
   --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-900: #4c1d95;
 
-  /* Terre cuite (toits de tuiles, ocres de Roussillon) */
-  --color-terracotta-400: #fb923c;
-  --color-terracotta-500: #f97316;
-  --color-terracotta-600: #c2410c;
-  --color-terracotta-700: #9a3412;
+  /* Rouge */
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
 
-  /* Ocre (champs de blé d'été) */
-  --color-ocre-400: #fbbf24;
-  --color-ocre-500: #f59e0b;
-  --color-ocre-600: #d97706;
-
+  /* Rose (variante midpoint, conservée pour les gradients) */
   --color-rose-500: #f43f5e;
   --color-rose-600: #e11d48;
+
+  /* Fuchsia : uniquement pour les gradients de transition violet→rouge */
   --color-fuchsia-500: #d946ef;
   --color-fuchsia-600: #c026d3;
 
@@ -58,28 +59,23 @@
     text-rendering: optimizeLegibility;
   }
   ::selection {
-    background: var(--color-lavande-600);
-    color: #fffaf0;
+    background: var(--color-violet-600);
+    color: #ffffff;
   }
 }
 
 @layer utilities {
-  /* Plein soleil sur Valensole : lavande très light en haut, ocre clair en bas */
+  /* Hero background : washes violet + rouge sur blanc */
   .bg-gradient-hero {
     background:
       radial-gradient(
         ellipse 80% 50% at 50% -10%,
-        rgba(124, 58, 237, 0.18),
+        rgba(124, 58, 237, 0.16),
         transparent 70%
       ),
       radial-gradient(
         ellipse 60% 50% at 80% 100%,
-        rgba(217, 119, 6, 0.14),
-        transparent 70%
-      ),
-      radial-gradient(
-        ellipse 50% 40% at 20% 90%,
-        rgba(194, 65, 12, 0.10),
+        rgba(220, 38, 38, 0.10),
         transparent 70%
       ),
       var(--color-bg);
@@ -88,32 +84,30 @@
   .text-gradient {
     background: linear-gradient(
       90deg,
-      var(--color-lavande-600),
+      var(--color-violet-600),
       var(--color-fuchsia-600),
-      var(--color-terracotta-600),
-      var(--color-ocre-600)
+      var(--color-red-600)
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .text-gradient-sunset {
+  .text-gradient-soft {
     background: linear-gradient(
       135deg,
-      var(--color-ocre-600),
-      var(--color-terracotta-600),
-      var(--color-rose-600)
+      var(--color-violet-500),
+      var(--color-red-500)
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 
-  .glow-lavande {
+  .glow-primary {
     box-shadow:
       0 0 40px -10px rgba(124, 58, 237, 0.35),
-      0 0 80px -20px rgba(217, 119, 6, 0.25);
+      0 0 80px -20px rgba(220, 38, 38, 0.25);
   }
 }
 
