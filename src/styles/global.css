@@ -111,6 +111,29 @@
   }
 }
 
+/* Hero entrance fades — pure CSS, avoids the motion/react SSR hydration issue */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+.hero-fade {
+  opacity: 0;
+  animation: hero-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero-fade-1 { animation-delay: 0.7s; }
+.hero-fade-2 { animation-delay: 0.9s; }
+.hero-fade-3 { animation-delay: 1.0s; }
+.hero-fade-up {
+  animation: hero-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+}
+.hero-fade-pop {
+  animation: hero-fade-pop 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
 /* Cosmic hero (Horizon-style, palette violet/red) */
 .cosmic-hero {
   background: linear-gradient(180deg, #08010f 0%, #1a0a1f 45%, #2a0815 100%);
