@@ -2,16 +2,10 @@ import { Mail } from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 
 /**
- * Hero v9.1 — Minimalist editorial (no framer-motion entrance animations).
- * Layout: 3-column grid
- *   • Left  : short pitch + Read More
- *   • Center: gradient circle + side-profile portrait
- *   • Right : huge overlay text "moins / de clic."
- *
- * Note: entrance animations dropped to avoid the motion/react + Astro SSR
- * hydration bug (elements stuck at initial opacity: 0). Effects kept:
- *   - CSS @keyframes aurora on the conic ring (rotates slowly)
- *   - CSS @keyframes fade-up applied via class (purely CSS, no JS)
+ * Hero v9.2 — Minimalist editorial.
+ * Portrait + gradient circle absolutely positioned at the bottom-center of
+ * the section, so the bottom of the body touches the bottom border of the
+ * hero. Left text + huge right text flank the portrait.
  */
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
@@ -45,7 +39,7 @@ export default function Hero() {
       className="relative flex w-full flex-col items-center justify-between overflow-hidden bg-white p-6 font-sans md:p-12"
       style={{ minHeight: "100svh" }}
     >
-      {/* Subtle 80px grid pattern */}
+      {/* Subtle grid pattern */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -56,12 +50,55 @@ export default function Hero() {
         }}
       />
 
+      {/* PORTRAIT + CIRCLE — absolutely anchored to the bottom of the section */}
+      <div
+        aria-hidden="false"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center"
+        style={{ height: "85%" }}
+      >
+        <div className="relative h-full" style={{ width: "min(46vw, 540px)" }}>
+          {/* Soft glow halo around the head area */}
+          <div
+            aria-hidden
+            className="hero-fade-pop absolute left-1/2 -translate-x-1/2 rounded-full opacity-50 blur-3xl"
+            style={{
+              top: "8%",
+              width: "min(40vw, 480px)",
+              height: "min(40vw, 480px)",
+              background:
+                "conic-gradient(from 0deg, #7c3aed, #c026d3, #dc2626, #7c3aed)",
+              animation:
+                "aurora 18s linear infinite, hero-fade-pop 0.9s cubic-bezier(0.22,1,0.36,1) 0.2s forwards",
+            }}
+          />
+          {/* Solid gradient circle, sized & positioned around the head */}
+          <div
+            aria-hidden
+            className="hero-fade-pop absolute left-1/2 -translate-x-1/2 rounded-full"
+            style={{
+              top: "8%",
+              width: "min(36vw, 440px)",
+              height: "min(36vw, 440px)",
+              background:
+                "linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
+            }}
+          />
+          {/* Portrait — bottom-anchored, extends upward through the circle */}
+          <img
+            src="/quentin-profile.png"
+            alt="Quentin DUROY, profil de côté"
+            className="hero-fade hero-fade-up absolute bottom-0 left-1/2 block w-full -translate-x-1/2"
+            style={{ height: "100%", objectFit: "contain", objectPosition: "center bottom" }}
+            draggable={false}
+          />
+        </div>
+      </div>
+
       {/* HEADER */}
-      <header className="hero-fade z-30 flex w-full max-w-7xl items-center justify-between">
+      <header className="hero-fade relative z-30 flex w-full max-w-7xl items-center justify-between">
         <a href="#hero" className="text-xl font-bold tracking-tight text-neutral-900">
           quentin-duroy<span className="text-violet-600">.</span>
         </a>
-
         <nav className="hidden items-center space-x-8 md:flex">
           {navLinks.map((link) => (
             <a
@@ -73,7 +110,6 @@ export default function Hero() {
             </a>
           ))}
         </nav>
-
         <a
           href="#contact"
           className="hidden rounded-full px-4 py-2 text-xs font-medium tracking-wider text-white transition-all hover:-translate-y-0.5 md:inline-block"
@@ -91,10 +127,10 @@ export default function Hero() {
         </button>
       </header>
 
-      {/* MAIN GRID */}
-      <div className="relative grid w-full max-w-7xl flex-grow grid-cols-1 items-center gap-8 md:grid-cols-3">
+      {/* SIDE COLUMNS — flank the portrait */}
+      <div className="relative z-20 grid w-full max-w-7xl flex-grow grid-cols-1 items-center gap-8 md:grid-cols-[1fr_minmax(0,46vw)_1fr]">
         {/* LEFT — short pitch */}
-        <div className="hero-fade hero-fade-1 z-20 order-2 text-center md:order-1 md:text-left">
+        <div className="hero-fade hero-fade-1 order-2 text-center md:order-1 md:text-left">
           <p className="mx-auto max-w-xs text-sm leading-relaxed text-neutral-700 md:mx-0">
             Référent IA &amp; Chef de Projet Web à l'Office de Tourisme du Pays
             de Manosque. Fondateur de LOGIQ IA. J'automatise les workflows pour
@@ -120,38 +156,11 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* CENTER — gradient circle + portrait */}
-        <div className="relative order-1 flex h-full items-center justify-center md:order-2">
-          {/* Soft glow ring (always-on aurora animation) */}
-          <div
-            aria-hidden
-            className="absolute z-0 h-[320px] w-[320px] rounded-full opacity-50 blur-2xl md:h-[440px] md:w-[440px] lg:h-[540px] lg:w-[540px]"
-            style={{
-              background:
-                "conic-gradient(from 0deg, #7c3aed, #c026d3, #dc2626, #7c3aed)",
-              animation: "aurora 18s linear infinite",
-            }}
-          />
-          {/* Main solid gradient circle */}
-          <div
-            className="hero-fade hero-fade-pop absolute z-0 h-[300px] w-[300px] rounded-full md:h-[400px] md:w-[400px] lg:h-[500px] lg:w-[500px]"
-            style={{
-              background:
-                "linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
-            }}
-          />
-          {/* Portrait */}
-          <img
-            src="/quentin-profile.png"
-            alt="Quentin DUROY, profil de côté"
-            className="hero-fade hero-fade-up relative z-10 h-auto w-56 scale-[1.45] object-cover md:w-64 lg:w-72"
-            style={{ objectPosition: "center bottom" }}
-            draggable={false}
-          />
-        </div>
+        {/* CENTER — spacer for the absolutely-positioned portrait */}
+        <div className="hidden md:block" aria-hidden />
 
         {/* RIGHT — huge overlay text */}
-        <div className="hero-fade hero-fade-2 z-20 order-3 flex items-center justify-center text-center md:justify-end md:text-right">
+        <div className="hero-fade hero-fade-2 order-3 flex items-center justify-center text-center md:justify-end md:text-right">
           <h1 className="text-6xl font-black leading-none tracking-tighter text-neutral-900 sm:text-7xl md:text-7xl lg:text-8xl xl:text-[9rem]">
             moins
             <br />
@@ -162,8 +171,8 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* FOOTER */}
-      <footer className="hero-fade hero-fade-3 z-30 flex w-full max-w-7xl items-center justify-between">
+      {/* FOOTER — z-30 to stay above the portrait that extends to bottom */}
+      <footer className="hero-fade hero-fade-3 relative z-30 flex w-full max-w-7xl items-center justify-between">
         <div className="flex items-center space-x-5">
           {socialLinks.map((link) => (
             <a
