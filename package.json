@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^5.0.4",
+    "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/inter": "^5.2.8",
     "@paper-design/shaders-react": "^0.0.76",
     "@tailwindcss/vite": "^4.3.0",

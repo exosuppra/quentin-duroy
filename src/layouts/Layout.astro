@@ -5,12 +5,14 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  keywords?: string;
 }
 
 const {
-  title = "Quentin DUROY · Référent IA & Chef de projet Web | Provence",
-  description = "Référent IA à l'Office de Tourisme de Manosque, fondateur de LOGIQ IA. Make.com, agents IA, MCP, automatisation. Basé à Gréoux-les-Bains, intervient partout en France.",
+  title = "Quentin DUROY · Référent IA Office de Tourisme Pays de Manosque | Expert IA Gréoux-les-Bains, Alpes-de-Haute-Provence",
+  description = "Quentin DUROY, Référent en Intelligence Artificielle à l'Office de Tourisme et des Congrès du Pays de Manosque. Expert IA, automatisation et agents IA pour entreprises et acteurs touristiques en Alpes-de-Haute-Provence (04) et région PACA. Fondateur de LOGIQ IA. Spécialiste Make, Claude, Lovable, MCP.",
   canonical = "https://quentin-duroy.fr/",
+  keywords = "Quentin DUROY, référent IA, intelligence artificielle, agent IA, automatisation, Make, Lovable, Claude, MCP, Office de Tourisme Pays de Manosque, OT Manosque, Gréoux-les-Bains, Alpes-de-Haute-Provence, 04, PACA, Provence-Alpes-Côte d'Azur, consultant IA, expert IA, formation IA, LOGIQ IA, chef de projet web, automatisation tourisme",
 } = Astro.props;
 ---
 
@@ -23,6 +25,12 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Quentin DUROY" />
+    <meta name="geo.region" content="FR-04" />
+    <meta name="geo.placename" content="Gréoux-les-Bains, Alpes-de-Haute-Provence" />
+    <meta name="geo.position" content="43.7567;5.8842" />
+    <meta name="ICBM" content="43.7567, 5.8842" />
     <link rel="canonical" href={canonical} />
 
     <meta property="og:type" content="profile" />
@@ -30,12 +38,19 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="fr_FR" />
+    <meta property="og:image" content="https://quentin-duroy.fr/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://quentin-duroy.fr/og-image.png" />
     <meta name="theme-color" content="#ffffff" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- Person schema -->
     <script
       type="application/ld+json"
       set:html={JSON.stringify({
@@ -43,11 +58,11 @@ const {
         "@type": "Person",
         name: "Quentin DUROY",
         url: "https://quentin-duroy.fr",
-        image: "https://quentin-duroy.fr/quentin.jpg",
+        image: "https://quentin-duroy.fr/quentin-profile.png",
         jobTitle:
-          "Référent IA & Chef de Projet Web · Fondateur LOGIQ IA",
+          "Référent en Intelligence Artificielle & Chef de Projet Web · Fondateur LOGIQ IA",
         description:
-          "Chef de projet IA basé en Provence. Fondateur de LOGIQ IA, Référent IA à l'Office de Tourisme du Pays de Manosque. Spécialiste Make.com, agents IA, automatisation des workflows.",
+          "Référent IA à l'Office de Tourisme et des Congrès du Pays de Manosque. Pionnier de l'IA en office de tourisme : créateur d'OTO, premier agent IA sur mesure en OT français. Fondateur de LOGIQ IA. Spécialiste Make.com, Lovable, agents IA, MCP. Basé à Gréoux-les-Bains, intervient en Alpes-de-Haute-Provence (04) et PACA.",
         worksFor: [
           {
             "@type": "Organization",
@@ -57,27 +72,44 @@ const {
           {
             "@type": "Organization",
             name: "Office de Tourisme et des Congrès du Pays de Manosque",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Manosque",
+              addressRegion: "Alpes-de-Haute-Provence",
+              addressCountry: "FR",
+            },
           },
         ],
         alumniOf: [
-          {
-            "@type": "EducationalOrganization",
-            name: "SUPDEWEB",
-          },
-          {
-            "@type": "EducationalOrganization",
-            name: "Aix-Marseille Université",
-          },
+          { "@type": "EducationalOrganization", name: "SUPDEWEB" },
+          { "@type": "EducationalOrganization", name: "Aix-Marseille Université" },
         ],
         knowsAbout: [
           "Intelligence artificielle",
+          "IA générative",
+          "Agents IA",
+          "MCP (Model Context Protocol)",
           "Automatisation des processus",
           "Make.com",
-          "Agents IA",
-          "MCP",
+          "Lovable",
+          "Anthropic Claude",
+          "Claude Code",
+          "Claude Cowork",
+          "OpenAI GPT",
+          "Google Gemini",
+          "Stable Diffusion",
+          "Suno",
+          "IA hébergée en local",
+          "Ollama",
           "Gestion de projet web",
           "SEO",
-          "Anthropic Claude",
+          "Tourisme & IA",
+          "Office de Tourisme",
+          "Apidae",
+          "Pays de Manosque",
+          "Gréoux-les-Bains",
+          "Alpes-de-Haute-Provence",
+          "PACA",
         ],
         hasCredential: [
           {
@@ -88,10 +120,21 @@ const {
           },
           {
             "@type": "EducationalOccupationalCredential",
-            name: "Vibe Coding L5: Diamond",
+            name: "Vibe Coding L5 Diamond",
             credentialCategory: "certification",
             recognizedBy: { "@type": "Organization", name: "Lovable" },
           },
+          {
+            "@type": "EducationalOccupationalCredential",
+            name: "Lauréat Concours International Make Grid",
+            credentialCategory: "award",
+            recognizedBy: { "@type": "Organization", name: "Make.com" },
+          },
+        ],
+        award: [
+          "Lauréat international du concours Make Grid (juillet 2025)",
+          "National Treasure · Top 1 % France · Lovable (2025)",
+          "Record YouTube FROT PACA : 130 spectateurs en direct, 4,8/5 (nov. 2025)",
         ],
         sameAs: [
           "https://fr.linkedin.com/in/quentin-duroy",
@@ -103,8 +146,64 @@ const {
           "@type": "PostalAddress",
           addressLocality: "Gréoux-les-Bains",
           addressRegion: "Provence-Alpes-Côte d'Azur",
+          postalCode: "04800",
           addressCountry: "FR",
         },
+        areaServed: [
+          {
+            "@type": "AdministrativeArea",
+            name: "Pays de Manosque",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Alpes-de-Haute-Provence",
+          },
+          {
+            "@type": "AdministrativeArea",
+            name: "Provence-Alpes-Côte d'Azur",
+          },
+          { "@type": "Country", name: "France" },
+        ],
+      })}
+    />
+
+    <!-- ProfessionalService schema for LOGIQ IA (local SEO) -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        name: "LOGIQ IA",
+        url: "https://logiq-ia.fr",
+        founder: {
+          "@type": "Person",
+          name: "Quentin DUROY",
+          url: "https://quentin-duroy.fr",
+        },
+        description:
+          "Cabinet d'ingénierie IA et automatisation pour entreprises et acteurs touristiques en Alpes-de-Haute-Provence et PACA. Agents IA sur mesure, Make.com, Lovable, MCP, Claude.",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Gréoux-les-Bains",
+          addressRegion: "Provence-Alpes-Côte d'Azur",
+          postalCode: "04800",
+          addressCountry: "FR",
+        },
+        areaServed: [
+          { "@type": "AdministrativeArea", name: "Pays de Manosque" },
+          { "@type": "AdministrativeArea", name: "Alpes-de-Haute-Provence" },
+          { "@type": "AdministrativeArea", name: "Provence-Alpes-Côte d'Azur" },
+          { "@type": "Country", name: "France" },
+        ],
+        knowsAbout: [
+          "Intelligence artificielle",
+          "Agents IA",
+          "Automatisation",
+          "Make.com",
+          "Lovable",
+          "Claude",
+          "MCP",
+        ],
       })}
     />
   </head>

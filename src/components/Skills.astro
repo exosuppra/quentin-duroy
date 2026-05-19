@@ -1,14 +1,45 @@
 ---
 const groups = [
   {
-    label: "Automation",
-    accent: "red",
-    items: ["Make.com", "n8n", "Zapier", "Microsoft Power Automate", "Agents IA", "60+ scénarios actifs"],
+    label: "IA générative",
+    accent: "violet",
+    items: [
+      "Anthropic Claude",
+      "OpenAI ChatGPT",
+      "Google Gemini",
+      "Stable Diffusion",
+      "Suno (musique IA)",
+      "Multi-modèles",
+      "Prompt engineering",
+    ],
   },
   {
-    label: "IA",
+    label: "Agents & IA-coding",
+    accent: "red",
+    items: [
+      "Lovable",
+      "Claude Code",
+      "Claude Cowork",
+      "MCP",
+      "Agents IA sur mesure",
+      "Tool use",
+    ],
+  },
+  {
+    label: "IA locale",
     accent: "violet",
-    items: ["OpenAI", "Anthropic", "Gemini", "Stable Diffusion", "Multi-modèles", "Prompt engineering"],
+    items: [
+      "Ollama",
+      "LM Studio",
+      "Stable Diffusion local",
+      "Modèles open-source",
+      "Projets souverains",
+    ],
+  },
+  {
+    label: "Automation",
+    accent: "red",
+    items: ["Make.com", "n8n", "Zapier", "Microsoft Power Automate", "Webhooks", "60+ scénarios actifs"],
   },
   {
     label: "Front",
@@ -18,7 +49,7 @@ const groups = [
   {
     label: "Back",
     accent: "red",
-    items: ["Node.js", "Supabase", "PostgreSQL", "Cloudflare Workers", "DataForSEO", "Make API"],
+    items: ["Node.js", "Supabase", "PostgreSQL", "Cloudflare Workers", "DataForSEO", "REST/GraphQL"],
   },
   {
     label: "DevOps",
@@ -41,13 +72,11 @@ const accentMap = {
 ---
 
 <section id="competences" class="relative overflow-hidden py-32 sm:py-40">
-  <!-- Grid background -->
   <div
     class="pointer-events-none absolute inset-0 -z-10 opacity-[0.18]"
     style="background-image: linear-gradient(to right, rgba(124,58,237,0.20) 1px, transparent 1px), linear-gradient(to bottom, rgba(220,38,38,0.16) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);"
   >
   </div>
-  <!-- Soft glow -->
   <div
     class="pointer-events-none absolute inset-x-0 top-1/4 -z-10 h-72 opacity-25"
     style="background: radial-gradient(ellipse at 30% 50%, #a78bfa 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #f87171 0%, transparent 60%); filter: blur(80px);"
@@ -66,14 +95,14 @@ const accentMap = {
         class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
         style="color: #0a0a0a;"
       >
-        Une stack <span class="text-gradient">moderne</span>,<br />
-        au service du produit.
+        Une stack <span class="text-gradient">polyvalente</span>,<br />
+        de l'IA générative au déploiement edge.
       </h2>
       <p class="mx-auto mt-6 max-w-2xl text-base" style="color: #404040;">
-        Spécialité : orchestrer des scénarios{" "}
-        <span style="color: #0a0a0a; font-weight: 600;">Make.com</span> et des
-        agents IA pour livrer des produits qui tournent en production, sans
-        usine à gaz.
+        Je travaille avec l'écosystème <span style="color: #0a0a0a; font-weight: 600;">Anthropic</span>
+        (Claude, Claude Code, Claude Cowork), <span style="color: #0a0a0a; font-weight: 600;">Lovable</span>,
+        <span style="color: #0a0a0a; font-weight: 600;">Make</span> et de nombreux modèles d'IA hébergés
+        en local. Spécialiste de l'agentique et de l'automatisation appliquées au terrain.
       </p>
     </div>
 
@@ -85,7 +114,7 @@ const accentMap = {
             style="border-color: #e5e5e5;"
           >
             <div
-              class="w-28 shrink-0 text-sm font-semibold uppercase tracking-wider"
+              class="w-36 shrink-0 text-sm font-semibold uppercase tracking-wider"
               style="color: #737373;"
             >
               {group.label}

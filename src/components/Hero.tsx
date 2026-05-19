@@ -84,13 +84,18 @@ export default function Hero() {
             }}
           />
           {/* Portrait — bottom-anchored, extends upward through the circle */}
-          <img
-            src="/quentin-profile.png"
-            alt="Quentin DUROY, profil de côté"
-            className="hero-fade hero-fade-up absolute bottom-0 left-1/2 block w-full -translate-x-1/2"
-            style={{ height: "100%", objectFit: "contain", objectPosition: "center bottom" }}
-            draggable={false}
-          />
+          <picture className="hero-fade hero-fade-up absolute bottom-0 left-1/2 block h-full w-full -translate-x-1/2">
+            <source srcSet="/quentin-profile.webp" type="image/webp" />
+            <img
+              src="/quentin-profile.png"
+              alt="Quentin DUROY, Référent IA Office de Tourisme Pays de Manosque"
+              className="block h-full w-full"
+              style={{ objectFit: "contain", objectPosition: "center bottom" }}
+              draggable={false}
+              width={800}
+              height={1066}
+            />
+          </picture>
         </div>
       </div>
 
@@ -132,9 +137,10 @@ export default function Hero() {
         {/* LEFT — short pitch */}
         <div className="hero-fade hero-fade-1 order-2 text-center md:order-1 md:text-left">
           <p className="mx-auto max-w-xs text-sm leading-relaxed text-neutral-700 md:mx-0">
-            Référent IA &amp; Chef de Projet Web à l'Office de Tourisme du Pays
-            de Manosque. Fondateur de LOGIQ IA. J'automatise les workflows pour
-            que les équipes se concentrent sur ce qui compte vraiment.
+            Référent IA &amp; Chef de Projet Web à l'Office de Tourisme et des
+            Congrès du Pays de Manosque. Fondateur de LOGIQ IA. J'automatise
+            les workflows pour que les équipes se concentrent sur ce qui compte
+            vraiment et les tâches à réelle valeur ajoutée.
           </p>
           <a
             href="#about"

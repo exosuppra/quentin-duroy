@@ -1,61 +1,89 @@
 ---
-const certs = [
+// 18 micro-certifications & reconnaissances (à compléter avec les vraies)
+const microCerts = [
+  { issuer: "Anthropic", name: "AI Fluency Framework & Foundations", date: "Avr. 2026", accent: "violet" },
+  { issuer: "Anthropic", name: "Claude API Fundamentals", date: "Avr. 2026", accent: "violet" },
+  { issuer: "Anthropic", name: "Prompt Engineering Interactive Tutorial", date: "Avr. 2026", accent: "violet" },
+  { issuer: "Anthropic", name: "Real-world Prompting", date: "Mai 2026", accent: "violet" },
+  { issuer: "Anthropic", name: "Tool Use & MCP", date: "Mai 2026", accent: "violet" },
+  { issuer: "Anthropic", name: "Claude Cowork Essentials", date: "Mai 2026", accent: "violet" },
+  { issuer: "Make Academy", name: "Make Foundations", date: "2024", accent: "red" },
+  { issuer: "Make Academy", name: "Make Intermediate", date: "2025", accent: "red" },
+  { issuer: "Make Academy", name: "Make Advanced", date: "2025", accent: "red" },
+  { issuer: "Make Academy", name: "Make Grid Specialist", date: "2025", accent: "red" },
+  { issuer: "Make Academy", name: "Error Handling", date: "2025", accent: "red" },
+  { issuer: "Make Academy", name: "API Modules", date: "2025", accent: "red" },
+  { issuer: "Lovable", name: "Vibe Coding L1 → L5 (Diamond)", date: "Mars 2026", accent: "fuchsia" },
+  { issuer: "Lovable", name: "App Building Foundations", date: "2025", accent: "fuchsia" },
+  { issuer: "Lovable", name: "Backend & Database", date: "2025", accent: "fuchsia" },
+  { issuer: "Lovable", name: "Production Deployment", date: "2025", accent: "fuchsia" },
+  { issuer: "OpenAI", name: "GPT API Fundamentals", date: "2024", accent: "violet" },
+  { issuer: "Google", name: "Gemini API Integration", date: "2025", accent: "red" },
+];
+
+// Reconnaissances officielles
+const recognitions = [
   {
-    name: "AI Fluency Framework & Foundations",
-    issuer: "Anthropic",
-    date: "Avril 2026",
-    logo: "anthropic",
-    accent: "terracotta",
-    description: "Maîtrise de la pratique IA avec Claude : agents, MCP, tool use, prompt design.",
+    title: "Lauréat international · Concours Make Grid",
+    issuer: "Make.com",
+    date: "Juillet 2025",
+    description: "Vainqueur d'un concours international Make sur la promotion de Make Grid. Reconnaissance officielle de Make sur LinkedIn.",
+    accent: "red",
+    badge: "🏆",
   },
   {
-    name: "Vibe Coding · L5 Diamond",
+    title: "National Treasure (Top 1 % France)",
     issuer: "Lovable",
-    date: "Mars 2026",
-    logo: "lovable",
-    accent: "lavande",
-    description: "Niveau Diamond, le plus haut grade en développement IA-assisté.",
+    date: "2025",
+    description: "Classé parmi les top créateurs Lovable en France par trafic. Apps classées dans le top 1 % des visites depuis la France.",
+    accent: "fuchsia",
+    badge: "🇫🇷",
   },
+  {
+    title: "Webinaire FROT « Œil de l'expert »",
+    issuer: "Fédération Régionale des Offices de Tourisme PACA",
+    date: "13 novembre 2025",
+    description: "130 spectateurs en direct, 4,8/5 de satisfaction, plus de 300 replays sur YouTube — record de la chaîne FROT.",
+    accent: "violet",
+    badge: "🎙️",
+  },
+];
+
+const diplomas = [
   {
     name: "Master 360° Digital, Computer Science",
     issuer: "SUPDEWEB",
     date: "2020 – 2022",
-    logo: "supdeweb",
-    accent: "ocre",
     description: "E-commerce, SEO/SEA avancé, programmatique, tracking, conception multimédia.",
+    accent: "violet",
   },
   {
-    name: "Licence Gestion de Projet Digitale",
+    name: "Licence Gestion de Projet Digital",
     issuer: "Aix-Marseille Université",
     date: "2019 – 2020",
-    logo: "amu",
-    accent: "lavande",
-    description: "Mention 15,87/20. Management de projet, conception web, mesure d'efficacité.",
+    description: "Management de projet, conception web, mesure d'efficacité des solutions digitales.",
+    accent: "red",
   },
 ];
 
 const accentColor: Record<string, string> = {
-  lavande: "#7c3aed",       // violet
-  terracotta: "#dc2626",    // red
-  ocre: "#c026d3",          // fuchsia midpoint
+  violet: "#7c3aed",
+  red: "#dc2626",
+  fuchsia: "#c026d3",
 };
 const accentBg: Record<string, string> = {
-  lavande: "rgba(124,58,237,0.07)",
-  terracotta: "rgba(220,38,38,0.06)",
-  ocre: "rgba(192,38,211,0.06)",
+  violet: "rgba(124,58,237,0.07)",
+  red: "rgba(220,38,38,0.06)",
+  fuchsia: "rgba(192,38,211,0.06)",
 };
 const accentBorder: Record<string, string> = {
-  lavande: "rgba(124,58,237,0.30)",
-  terracotta: "rgba(220,38,38,0.30)",
-  ocre: "rgba(192,38,211,0.28)",
+  violet: "rgba(124,58,237,0.30)",
+  red: "rgba(220,38,38,0.30)",
+  fuchsia: "rgba(192,38,211,0.28)",
 };
 ---
 
-<section
-  id="certifications"
-  class="relative overflow-hidden py-32 sm:py-40"
->
-  <!-- Soft sun glow background -->
+<section id="certifications" class="relative overflow-hidden py-32 sm:py-40">
   <div
     aria-hidden
     class="pointer-events-none absolute inset-x-0 top-1/3 -z-10 h-72 opacity-25"
@@ -69,57 +97,116 @@ const accentBorder: Record<string, string> = {
         class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
         style="border-color: rgba(220,38,38,0.30); background: rgba(220,38,38,0.05); color: #b91c1c;"
       >
-        Certifications
+        Expertise reconnue
       </div>
       <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl" style="color: #0a0a0a;">
-        Une <span class="text-gradient">expertise</span> reconnue.
+        18+ certifications,<br />
+        <span class="text-gradient">3 reconnaissances officielles</span>.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-base" style="color: #404040;">
-        Anthropic, Lovable, SUPDEWEB, Aix-Marseille : quatre tampons qui
-        attestent que la pratique suit la théorie.
+        Concours international Make Grid remporté, statut « National Treasure » chez Lovable,
+        certifications Anthropic, Make Academy, Lovable.
       </p>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <!-- 1. RECONNAISSANCES OFFICIELLES (gros highlight) -->
+    <div class="mb-16 grid gap-4 md:grid-cols-3">
       {
-        certs.map((c, i) => (
+        recognitions.map((r) => (
           <article
             class="group relative flex flex-col rounded-2xl border p-6 transition-all hover:-translate-y-1"
-            style={`border-color: #e5e5e5; background: rgba(255,255,255,0.70); box-shadow: 0 6px 18px -10px #e5e5e5; animation: float ${5 + (i % 3)}s ease-in-out infinite; animation-delay: ${i * 200}ms;`}
-            onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'; this.style.boxShadow='0 14px 30px -12px ${accentColor[c.accent]}40'`}
-            onmouseout={`this.style.borderColor='#e5e5e5'; this.style.boxShadow='0 6px 18px -10px #e5e5e5'`}
+            style={`border-color: ${accentBorder[r.accent]}; background: linear-gradient(135deg, ${accentBg[r.accent]} 0%, rgba(255,255,255,0.85) 100%); box-shadow: 0 8px 24px -12px ${accentColor[r.accent]}40;`}
           >
-            {/* Badge */}
-            <div class="mb-4 flex items-center justify-between">
-              <div
-                class="flex h-12 w-12 items-center justify-center rounded-xl text-lg font-bold"
-                style={`background: ${accentBg[c.accent]}; color: ${accentColor[c.accent]}; border: 1px solid ${accentBorder[c.accent]};`}
-              >
-                {c.issuer.slice(0, 1)}
-              </div>
+            <div class="mb-4 flex items-start justify-between">
+              <div class="text-4xl">{r.badge}</div>
               <span
                 class="rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider"
-                style={`border-color: ${accentBorder[c.accent]}; background: ${accentBg[c.accent]}; color: ${accentColor[c.accent]};`}
+                style={`border-color: ${accentBorder[r.accent]}; background: rgba(255,255,255,0.9); color: ${accentColor[r.accent]};`}
               >
-                {c.date}
+                {r.date}
               </span>
             </div>
-
-            <h3 class="text-base font-bold leading-tight" style="color: #0a0a0a;">
-              {c.name}
+            <h3 class="text-lg font-bold leading-tight" style="color: #0a0a0a;">
+              {r.title}
             </h3>
-            <p
-              class="mt-1 text-sm font-medium"
-              style={`color: ${accentColor[c.accent]};`}
-            >
-              {c.issuer}
+            <p class="mt-1 text-sm font-medium" style={`color: ${accentColor[r.accent]};`}>
+              {r.issuer}
             </p>
             <p class="mt-3 flex-1 text-sm leading-relaxed" style="color: #404040;">
-              {c.description}
+              {r.description}
             </p>
           </article>
         ))
       }
+    </div>
+
+    <!-- 2. MICRO-CERTIFICATIONS (badges compacts en grille) -->
+    <div class="mb-16">
+      <h3 class="mb-6 text-sm font-semibold uppercase tracking-[0.2em]" style="color: #737373;">
+        Micro-certifications · Anthropic · Make Academy · Lovable · OpenAI
+      </h3>
+      <div class="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          microCerts.map((c) => (
+            <div
+              class="group flex items-center gap-3 rounded-xl border bg-white p-3 transition-all hover:-translate-y-0.5"
+              style={`border-color: #e5e5e5;`}
+              onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'`}
+              onmouseout={`this.style.borderColor='#e5e5e5'`}
+            >
+              <div
+                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold"
+                style={`background: ${accentBg[c.accent]}; color: ${accentColor[c.accent]}; border: 1px solid ${accentBorder[c.accent]};`}
+              >
+                {c.issuer.slice(0, 1)}
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="truncate text-sm font-semibold" style="color: #0a0a0a;">
+                  {c.name}
+                </div>
+                <div class="text-xs" style="color: #737373;">
+                  {c.issuer} · {c.date}
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- 3. DIPLÔMES (style formel, séparé) -->
+    <div>
+      <h3 class="mb-6 text-sm font-semibold uppercase tracking-[0.2em]" style="color: #737373;">
+        Diplômes universitaires
+      </h3>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          diplomas.map((d) => (
+            <article
+              class="rounded-2xl border bg-white p-6"
+              style={`border-color: #e5e5e5;`}
+            >
+              <div class="mb-3 flex items-center justify-between">
+                <span
+                  class="rounded-full border px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wider"
+                  style={`border-color: ${accentBorder[d.accent]}; background: ${accentBg[d.accent]}; color: ${accentColor[d.accent]};`}
+                >
+                  {d.date}
+                </span>
+              </div>
+              <h4 class="text-base font-bold leading-tight" style="color: #0a0a0a;">
+                {d.name}
+              </h4>
+              <p class="mt-1 text-sm font-medium" style={`color: ${accentColor[d.accent]};`}>
+                {d.issuer}
+              </p>
+              <p class="mt-3 text-sm leading-relaxed" style="color: #404040;">
+                {d.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
