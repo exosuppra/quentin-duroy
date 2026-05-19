@@ -155,35 +155,56 @@ function FeaturedCard({ project }: { project: Project }) {
             }}
           >
             <div className="relative h-full w-full">
+              {/* Manga AI hero background */}
+              <picture>
+                <source srcSet="/manga-ai-hero.webp" type="image/webp" />
+                <img
+                  src="/manga-ai-hero.webp"
+                  alt="Manga AI, générateur de manga par IA"
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </picture>
+              {/* Tint overlay for color harmony */}
               <div
                 className="absolute inset-0"
                 style={{
                   backgroundImage:
-                    "linear-gradient(135deg, rgba(220,38,38,0.18) 0%, rgba(124,58,237,0.16) 50%, rgba(192,38,211,0.10) 100%)",
+                    "linear-gradient(135deg, rgba(220,38,38,0.10) 0%, rgba(124,58,237,0.10) 100%)",
                 }}
               />
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-6 text-center">
-                <div className="text-6xl font-bold tracking-tighter text-gradient md:text-7xl">
-                  漫画
-                </div>
+              {/* Bottom badges: domain + tagline */}
+              <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
                 <div
-                  className="text-xs uppercase tracking-[0.3em]"
-                  style={{ color: "#737373" }}
-                >
-                  Manga · AI · 240 pages
-                </div>
-                <div
-                  className="mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm backdrop-blur"
+                  className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium backdrop-blur"
                   style={{
-                    borderColor: "#d4d4d4",
-                    background: "rgba(255,255,255,0.78)",
-                    color: "#0a0a0a",
+                    borderColor: "rgba(255,255,255,0.30)",
+                    background: "rgba(0,0,0,0.55)",
+                    color: "#ffffff",
                   }}
                 >
+                  <img
+                    src="/manga-ai-logo.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    loading="lazy"
+                    className="h-5 w-5 rounded"
+                  />
                   <span>manga-ai.fr</span>
                   <svg viewBox="0 0 16 16" fill="currentColor" className="h-3 w-3">
                     <path d="M5.5 3a.5.5 0 010-1h7a.5.5 0 01.5.5v7a.5.5 0 01-1 0V3.707l-8.146 8.147a.5.5 0 01-.708-.708L11.293 3H5.5z" />
                   </svg>
+                </div>
+                <div
+                  className="rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider backdrop-blur"
+                  style={{
+                    borderColor: "rgba(255,255,255,0.30)",
+                    background: "rgba(0,0,0,0.55)",
+                    color: "#fed7aa",
+                  }}
+                >
+                  240 pages · trilingue
                 </div>
               </div>
             </div>
