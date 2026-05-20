@@ -55,8 +55,8 @@ export const projects: Project[] = [
     accent: "violet",
   },
   {
-    slug: "genesis",
-    title: "GENESIS",
+    slug: "aegis",
+    title: "AEGIS",
     tagline: "Générateur autonome de jeux vidéo IA",
     description:
       "Système qui orchestre plusieurs modèles d'IA (hébergés en local) pour générer game design, sprites, dialogues et code pour Unreal Engine 5 à partir d'une simple idée de jeu. Architecture entièrement souveraine : pas d'API cloud, tout tourne sur ressources locales.",
