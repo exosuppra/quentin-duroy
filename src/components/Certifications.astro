@@ -16,8 +16,11 @@ const microCerts = [
   { issuer: "Anthropic", name: "Introduction to Claude Cowork", date: "Avr. 2026", id: "6naec5chjo9v", accent: "violet" },
   { issuer: "Anthropic", name: "Claude Code 101", date: "Avr. 2026", id: "eop32xy8tq2s", accent: "violet" },
   { issuer: "Anthropic", name: "Claude 101", date: "Avr. 2026", id: "8czgacbz8svh", accent: "violet" },
-  // Make (1)
+  // Make (4) - progression complete Make Academy
   { issuer: "Make", name: "Make Foundation", date: "Nov. 2025", id: null, accent: "red" },
+  { issuer: "Make", name: "Make Basics", date: "Nov. 2025", id: null, accent: "red" },
+  { issuer: "Make", name: "Make Intermediate", date: "Nov. 2025", id: null, accent: "red" },
+  { issuer: "Make", name: "Make Advanced", date: "Nov. 2025", id: null, accent: "red" },
   // Lovable (1)
   { issuer: "Lovable", name: "Vibe Coding L5 Diamond", date: "Mars 2026", id: null, accent: "fuchsia" },
 ];
@@ -79,7 +82,7 @@ const countLovable = microCerts.filter(c => c.issuer === "Lovable").length;
         Expertise reconnue
       </div>
       <h2 class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl" style="color: #0a0a0a;">
-        16 certifications,<br />
+        19 certifications,<br />
         <span class="text-gradient">3 reconnaissances officielles</span>.
       </h2>
       <p class="mx-auto mt-4 max-w-xl text-base" style="color: #404040;">
@@ -255,10 +258,10 @@ const countLovable = microCerts.filter(c => c.issuer === "Lovable").length;
       <div class="mb-6 flex items-end justify-between">
         <div>
           <h3 class="text-2xl font-bold tracking-tight" style="color: #0a0a0a;">
-            16 certifications
+            19 certifications
           </h3>
           <p class="mt-1 text-sm" style="color: #737373;">
-            Anthropic · Make Academy · Lovable
+            Anthropic · Make Academy (cursus complet) · Lovable
           </p>
         </div>
         <div class="hidden text-right text-xs sm:block" style="color: #737373;">

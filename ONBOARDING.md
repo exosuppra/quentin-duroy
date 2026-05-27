@@ -38,10 +38,10 @@
 2. **🇫🇷 Lovable National Treasure** (top 1 % France creators) — show the 2 images `lovable-big-deal.png/webp` + `lovable-national-treasure.png/webp` (saved in `public/`).
 3. **🎙️ Webinaire FROT « Œil de l'expert »** (13 nov. 2025) — 130 spectateurs en direct, 4,8/5, record YouTube FROT. Replay embedded: <https://www.youtube.com/embed/ntirnVcj9ko>. _Note explicitly: since Nov 2025, lots of evolutions; replay is an entry point but the field has advanced a lot._
 
-## 16 certifications (real list, with IDs)
+## 19 certifications (real list, with IDs)
 
 - **14 Anthropic** (avr-mai 2026): Claude 101, Claude Code 101, Claude Code in Action, Introduction to Claude Cowork, AI Fluency Framework & Foundations, Building with the Claude API, Introduction to Model Context Protocol, AI Fluency for Educators/Students/Nonprofits/Small Businesses, Teaching AI Fluency, AI Capabilities and Limitations, Claude with Google Vertex AI. (IDs in `Certifications.astro`.)
-- **1 Make Foundation** (nov. 2025)
+- **4 Make Academy** (nov. 2025) — full curriculum: Foundation, Basics, Intermediate, Advanced
 - **1 Lovable Vibe Coding L5 Diamond** (mars 2026)
 
 ## Diplomas (no GPA, user request)
