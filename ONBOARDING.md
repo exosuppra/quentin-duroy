@@ -48,6 +48,8 @@
 
 - Master 360° Digital, Computer Science — SUPDEWEB (2020–2022)
 - Licence Gestion de Projet Digital — Aix-Marseille Université (2019–2020) — _do not show the 15,87 average._
+- BTS Assistant de Gestion — Institution Notre Dame de Chartres (2017–2019)
+- Baccalauréat STMG, spécialisation RH — Institution Notre Dame de Chartres (2015–2017)
 
 ## Key numbers (statistics)
 
