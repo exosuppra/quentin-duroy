@@ -1,28 +1,31 @@
 ---
-// 16 vraies certifications (LinkedIn de Quentin)
+// 19 vraies certifications (LinkedIn de Quentin)
+// Tous les diplômes sont consultables depuis LinkedIn :
+const LINKEDIN_CERTS_URL = "https://www.linkedin.com/in/quentin-duroy/details/certifications/";
+
 const microCerts = [
-  // Anthropic (13)
-  { issuer: "Anthropic", name: "Claude with Google Vertex AI", date: "Mai 2026", id: "ysu55ztdurks", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Capabilities and Limitations", date: "Mai 2026", id: "j8ysbjw5dd8g", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Fluency for Small Businesses", date: "Mai 2026", id: "q5d2vwu84d7x", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Fluency for Nonprofits", date: "Mai 2026", id: "opc2uv5vob3z", accent: "violet" },
-  { issuer: "Anthropic", name: "Teaching AI Fluency", date: "Mai 2026", id: "gcfyxozv82xt", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Fluency for Students", date: "Mai 2026", id: "kdjbjav8jgfj", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Fluency for Educators", date: "Mai 2026", id: "atfkq3jf86du", accent: "violet" },
-  { issuer: "Anthropic", name: "Introduction to Model Context Protocol", date: "Mai 2026", id: "5gip3bw9d9pa", accent: "violet" },
-  { issuer: "Anthropic", name: "Building with the Claude API", date: "Mai 2026", id: "noebcq8pwgvm", accent: "violet" },
-  { issuer: "Anthropic", name: "AI Fluency Framework & Foundations", date: "Avr. 2026", id: "nb9knnyqtjvo", accent: "violet" },
-  { issuer: "Anthropic", name: "Claude Code in Action", date: "Avr. 2026", id: "xxi68usz8mb6", accent: "violet" },
-  { issuer: "Anthropic", name: "Introduction to Claude Cowork", date: "Avr. 2026", id: "6naec5chjo9v", accent: "violet" },
-  { issuer: "Anthropic", name: "Claude Code 101", date: "Avr. 2026", id: "eop32xy8tq2s", accent: "violet" },
-  { issuer: "Anthropic", name: "Claude 101", date: "Avr. 2026", id: "8czgacbz8svh", accent: "violet" },
+  // Anthropic (14)
+  { issuer: "Anthropic", name: "Claude with Google Vertex AI", date: "Mai 2026", id: "ysu55ztdurks", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Capabilities and Limitations", date: "Mai 2026", id: "j8ysbjw5dd8g", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Fluency for Small Businesses", date: "Mai 2026", id: "q5d2vwu84d7x", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Fluency for Nonprofits", date: "Mai 2026", id: "opc2uv5vob3z", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Teaching AI Fluency", date: "Mai 2026", id: "gcfyxozv82xt", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Fluency for Students", date: "Mai 2026", id: "kdjbjav8jgfj", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Fluency for Educators", date: "Mai 2026", id: "atfkq3jf86du", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Introduction to Model Context Protocol", date: "Mai 2026", id: "5gip3bw9d9pa", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Building with the Claude API", date: "Mai 2026", id: "noebcq8pwgvm", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "AI Fluency Framework & Foundations", date: "Avr. 2026", id: "nb9knnyqtjvo", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Claude Code in Action", date: "Avr. 2026", id: "xxi68usz8mb6", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Introduction to Claude Cowork", date: "Avr. 2026", id: "6naec5chjo9v", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Claude Code 101", date: "Avr. 2026", id: "eop32xy8tq2s", accent: "violet", logo: null },
+  { issuer: "Anthropic", name: "Claude 101", date: "Avr. 2026", id: "8czgacbz8svh", accent: "violet", logo: null },
   // Make (4) - progression complete Make Academy
-  { issuer: "Make", name: "Make Foundation", date: "Nov. 2025", id: null, accent: "red" },
-  { issuer: "Make", name: "Make Basics", date: "Nov. 2025", id: null, accent: "red" },
-  { issuer: "Make", name: "Make Intermediate", date: "Nov. 2025", id: null, accent: "red" },
-  { issuer: "Make", name: "Make Advanced", date: "Nov. 2025", id: null, accent: "red" },
+  { issuer: "Make", name: "Make Foundation", date: "Nov. 2025", id: null, accent: "red", logo: null },
+  { issuer: "Make", name: "Make Basics", date: "Nov. 2025", id: null, accent: "red", logo: null },
+  { issuer: "Make", name: "Make Intermediate", date: "Nov. 2025", id: null, accent: "red", logo: null },
+  { issuer: "Make", name: "Make Advanced", date: "Nov. 2025", id: null, accent: "red", logo: "/badge-make-advanced.webp" },
   // Lovable (1)
-  { issuer: "Lovable", name: "Vibe Coding L5 Diamond", date: "Mars 2026", id: null, accent: "fuchsia" },
+  { issuer: "Lovable", name: "Vibe Coding L5 Diamond", date: "Mars 2026", id: null, accent: "fuchsia", logo: null },
 ];
 
 const diplomas = [
@@ -273,28 +276,51 @@ const countLovable = microCerts.filter(c => c.issuer === "Lovable").length;
       <div class="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
         {
           microCerts.map((c) => (
-            <div
+            <a
+              href={LINKEDIN_CERTS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Afficher le diplôme : ${c.name} (${c.issuer}, ${c.date})`}
               class="group flex items-center gap-3 rounded-xl border bg-white p-3 transition-all hover:-translate-y-0.5"
               style="border-color: #e5e5e5;"
-              onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'`}
-              onmouseout={`this.style.borderColor='#e5e5e5'`}
+              onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'; this.style.boxShadow='0 8px 20px -10px ${accentColor[c.accent]}40'`}
+              onmouseout={`this.style.borderColor='#e5e5e5'; this.style.boxShadow='none'`}
             >
-              <div
-                class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold"
-                style={`background: ${accentBg[c.accent]}; color: ${accentColor[c.accent]}; border: 1px solid ${accentBorder[c.accent]};`}
-              >
-                {c.issuer.slice(0, 1)}
-              </div>
+              {c.logo ? (
+                <img
+                  src={c.logo}
+                  alt=""
+                  width={36}
+                  height={36}
+                  loading="lazy"
+                  class="h-9 w-9 shrink-0 rounded-lg object-cover"
+                />
+              ) : (
+                <div
+                  class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold"
+                  style={`background: ${accentBg[c.accent]}; color: ${accentColor[c.accent]}; border: 1px solid ${accentBorder[c.accent]};`}
+                >
+                  {c.issuer.slice(0, 1)}
+                </div>
+              )}
               <div class="min-w-0 flex-1">
                 <div class="truncate text-sm font-semibold" style="color: #0a0a0a;">
                   {c.name}
                 </div>
                 <div class="text-xs" style="color: #737373;">
                   {c.issuer} · {c.date}
-                  {c.id && <span class="ml-1 opacity-60">· {c.id}</span>}
                 </div>
               </div>
-            </div>
+              <svg
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                class="h-3 w-3 shrink-0 opacity-30 transition-opacity group-hover:opacity-100"
+                style={`color: ${accentColor[c.accent]};`}
+                aria-hidden="true"
+              >
+                <path d="M5.5 3a.5.5 0 010-1h7a.5.5 0 01.5.5v7a.5.5 0 01-1 0V3.707l-8.146 8.147a.5.5 0 01-.708-.708L11.293 3H5.5z" />
+              </svg>
+            </a>
           ))
         }
       </div>
