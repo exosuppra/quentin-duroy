@@ -64,6 +64,15 @@ export const projects: Project[] = [
     accent: "fuchsia",
   },
   {
+    slug: "la-piece-qui-attend",
+    title: "La Pièce Qui Attend",
+    tagline: "Jeu d'horreur psychologique 3D",
+    description:
+      "Jeu d'horreur narratif à la première personne (~30-45 min) construit avec Three.js et WebGL, packagé en .exe Windows hors-ligne via Electron. Audio spatialisé HRTF (Web Audio API), miroirs reflétés en temps réel, assets PBR et modèles 3D entièrement libres (Poly Haven et Freesound, licences CC0). Énigmes scénarisées (radio, dessins, frigo) qui s'enchaînent jusqu'à une révélation finale en plein jour. V2 prévue sur Unreal Engine 5, sortie commerciale envisagée sur Steam.",
+    tech: ["Three.js", "WebGL", "Electron", "HRTF Audio", "glTF / PBR", "Steam", "Unreal Engine 5"],
+    accent: "rose",
+  },
+  {
     slug: "traducteur-surimpression",
     title: "Traducteur en surimpression",
     tagline: "OCR + traduction temps réel",

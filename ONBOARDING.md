@@ -29,6 +29,7 @@
 | **OTO + OTO_Mail** | In production at OT | First custom AI agents in a French OT (mars 2025). Run ~60 metier tasks daily. Tags include MCP, Tool use. |
 | **Catalogue de formation IA** | Live | FROT PACA partnership. URL: <https://formation-ot-paysdemanosque.lovable.app/> |
 | **AEGIS** (NOT "GENESIS") | In dev | Autonomous AI game generator, Unreal Engine 5 + local models only. User-corrected name. |
+| **La Pièce Qui Attend** | In dev, Steam target | 3D first-person horror game (~30-45 min), Three.js + WebGL packaged via Electron as a Windows .exe. CC0 assets (Poly Haven, Freesound). V2 planned on Unreal 5. Private repo `exosuppra/la-piece-qui-attend`. |
 | **Traducteur en surimpression** | Side project | OCR + DeepL desktop app. |
 | **quentin-duroy.fr** | This site | Astro + Tailwind. |
 
