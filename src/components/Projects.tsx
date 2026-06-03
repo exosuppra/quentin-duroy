@@ -114,29 +114,47 @@ function FeaturedCard({ project }: { project: Project }) {
             ))}
           </div>
 
-          {project.href && (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener"
-              className="group/cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
-              style={{
-                background:
-                  "linear-gradient(90deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
-                boxShadow: "0 12px 30px -10px rgba(220,38,38,0.40)",
-              }}
-            >
-              {project.hrefLabel ?? "Voir le projet"}
-              <svg
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                aria-hidden
-                className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5"
+          <div className="flex flex-wrap items-center gap-3">
+            {project.href && (
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener"
+                className="group/cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
+                  boxShadow: "0 12px 30px -10px rgba(220,38,38,0.40)",
+                }}
               >
-                <path d="M6 3l5 5-5 5V3z" />
-              </svg>
-            </a>
-          )}
+                {project.hrefLabel ?? "Voir le projet"}
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="currentColor"
+                  aria-hidden
+                  className="h-4 w-4 transition-transform group-hover/cta:translate-x-0.5"
+                >
+                  <path d="M6 3l5 5-5 5V3z" />
+                </svg>
+              </a>
+            )}
+            {project.slug === "manga-ai" && (
+              <a
+                href="/projets/manga-ai/"
+                className="inline-flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold transition-all hover:-translate-y-0.5"
+                style={{
+                  borderColor: "#d4d4d4",
+                  color: "#0a0a0a",
+                  background: "#ffffff",
+                }}
+              >
+                Lire la fiche projet
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden className="h-3.5 w-3.5">
+                  <path d="M6 3l5 5-5 5V3z" />
+                </svg>
+              </a>
+            )}
+          </div>
         </div>
 
         {/* Right side: animated visual */}

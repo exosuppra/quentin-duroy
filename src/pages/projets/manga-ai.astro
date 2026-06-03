@@ -1,0 +1,546 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+
+const title =
+  "Manga AI · Générateur de manga par IA (jusqu'à 240 pages) | Projet by Quentin DUROY";
+const description =
+  "Manga AI : générateur de manga complet par intelligence artificielle, jusqu'à 240 pages, trilingue FR/EN/ES. Découvrez la genèse, la stack technique, les cas d'usage et les coulisses du projet manga-ai.fr.";
+const canonical = "https://quentin-duroy.fr/projets/manga-ai/";
+
+const faqs = [
+  {
+    question: "Qu'est-ce que Manga AI ?",
+    answer:
+      "Manga AI est une application web qui transforme un simple scénario textuel en un manga complet, planches dessinées et bulles incluses, jusqu'à 240 pages. L'outil orchestre plusieurs modèles d'IA générative (texte et image) dans un pipeline cohérent pour préserver les personnages, les décors et le style graphique d'une page à l'autre. Le projet est accessible sur <a href=\"https://manga-ai.fr\" rel=\"noopener\" style=\"color:#dc2626;text-decoration:underline;\">manga-ai.fr</a>.",
+  },
+  {
+    question: "Qui peut utiliser le générateur de manga par IA ?",
+    answer:
+      "Auteurs en herbe, créateurs de contenu, professeurs de français en collège-lycée, agences créatives, équipes marketing. La plateforme est volontairement accessible : pas besoin de savoir dessiner, l'écriture du synopsis suffit. <a href=\"https://manga-ai.fr\" rel=\"noopener\" style=\"color:#dc2626;text-decoration:underline;\">Tester Manga AI</a> est gratuit pour les premières pages.",
+  },
+  {
+    question: "Quelles langues sont supportées ?",
+    answer:
+      "Trois langues à ce jour : français, anglais, espagnol. Le moteur narratif et la génération des bulles fonctionnent nativement dans chacune. D'autres langues sont prévues sur la feuille de route.",
+  },
+  {
+    question: "Quelle stack technique fait tourner Manga AI ?",
+    answer:
+      "Vite, React, Supabase pour la base de données et l'authentification, Stripe pour les paiements, Cloudflare pour l'edge, et un pipeline multi-modèles côté IA (OpenAI, Google Gemini, Anthropic Claude). Une partie de l'inférence tourne sur serveur local pour la cohérence des images au-delà de quelques planches.",
+  },
+  {
+    question: "Comment est conservée la cohérence entre les pages ?",
+    answer:
+      "C'est le défi majeur du projet : un manga de 240 pages doit garder les mêmes personnages, costumes, décors. Manga AI mémorise les descriptions canoniques et les ré-injecte dans chaque appel au modèle, avec des prompts différentiels pour chaque case. Le résultat est jugé bluffant par les premiers utilisateurs.",
+  },
+  {
+    question: "Manga AI est-il un projet commercial ?",
+    answer:
+      "Oui. Il est édité par Quentin DUROY et hébergé sur Cloudflare Pages. L'abonnement débloque les exports PDF haute définition et les longs formats. Tout est documenté sur <a href=\"https://manga-ai.fr\" rel=\"noopener\" style=\"color:#dc2626;text-decoration:underline;\">manga-ai.fr</a>.",
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+>
+  <Header />
+
+  <main class="bg-white">
+    {/* HERO */}
+    <section class="relative overflow-hidden">
+      <div
+        aria-hidden
+        class="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style="background-image: linear-gradient(to right, #000 1px, transparent 1px), linear-gradient(to bottom, #000 1px, transparent 1px); background-size: 80px 80px;"
+      >
+      </div>
+
+      <div class="mx-auto max-w-5xl px-6 pb-16 pt-32 sm:pt-40">
+        <nav class="mb-8 text-sm" style="color: #737373;">
+          <a href="/" class="hover:underline" style="color: #6d28d9;">Accueil</a>
+          <span class="mx-2">/</span>
+          <a href="/#projets" class="hover:underline" style="color: #6d28d9;">Projets</a>
+          <span class="mx-2">/</span>
+          <span style="color: #0a0a0a;">Manga AI</span>
+        </nav>
+
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(220,38,38,0.35); background: rgba(220,38,38,0.06); color: #b91c1c;"
+        >
+          <span class="relative flex h-1.5 w-1.5">
+            <span
+              class="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75"
+              style="background: #ef4444;"
+            ></span>
+            <span
+              class="relative inline-flex h-1.5 w-1.5 rounded-full"
+              style="background: #dc2626;"
+            ></span>
+          </span>
+          Projet en production
+        </div>
+
+        <h1
+          class="mt-6 text-balance text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl md:text-7xl"
+          style="color: #0a0a0a;"
+        >
+          Manga AI :<br />
+          <span class="text-gradient">générateur de manga par IA</span>,
+          jusqu'à 240 pages.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-xl leading-relaxed" style="color: #404040;">
+          Transformer un synopsis en manga complet, planches dessinées et bulles
+          incluses, sans savoir dessiner.{" "}
+          <a
+            href="https://manga-ai.fr"
+            target="_blank"
+            rel="noopener"
+            class="font-semibold underline decoration-from-font underline-offset-4"
+            style="color: #dc2626;"
+          >
+            Manga AI
+          </a>{" "}
+          est l'aboutissement de plus de 18 mois de R&amp;D sur l'orchestration
+          de modèles d'IA générative pour la création narrative longue.
+        </p>
+
+        <div class="mt-10 flex flex-col items-start gap-4 sm:flex-row">
+          <a
+            href="https://manga-ai.fr"
+            target="_blank"
+            rel="noopener"
+            class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
+            style="background: linear-gradient(90deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%); box-shadow: 0 12px 30px -10px rgba(220,38,38,0.45);"
+          >
+            Visiter manga-ai.fr
+            <svg viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4" aria-hidden>
+              <path d="M5.5 3a.5.5 0 010-1h7a.5.5 0 01.5.5v7a.5.5 0 01-1 0V3.707l-8.146 8.147a.5.5 0 01-.708-.708L11.293 3H5.5z" />
+            </svg>
+          </a>
+          <a
+            href="#fonctionnement"
+            class="inline-flex items-center gap-2 rounded-full border px-8 py-3.5 text-base font-semibold transition-all hover:-translate-y-0.5"
+            style="border-color: #d4d4d4; color: #0a0a0a;"
+          >
+            Comment ça marche ?
+          </a>
+        </div>
+
+        {/* Hero image */}
+        <div
+          class="mt-16 overflow-hidden rounded-3xl border shadow-2xl"
+          style="border-color: #e5e5e5; box-shadow: 0 30px 60px -20px rgba(124,58,237,0.30), 0 18px 40px -15px rgba(220,38,38,0.20);"
+        >
+          <picture>
+            <source srcset="/manga-ai-hero.webp" type="image/webp" />
+            <img
+              src="/manga-ai-hero.webp"
+              alt="Aperçu de Manga AI, générateur de manga par intelligence artificielle"
+              loading="eager"
+              width="1200"
+              height="800"
+              class="block h-auto w-full"
+            />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+    {/* PRÉSENTATION */}
+    <section class="relative py-24 sm:py-32">
+      <div class="mx-auto max-w-3xl px-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(124,58,237,0.30); background: rgba(124,58,237,0.06); color: #6d28d9;"
+        >
+          Présentation
+        </div>
+        <h2
+          class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          Du script à la planche, sans intermédiaire.
+        </h2>
+
+        <div class="prose prose-lg mt-8 space-y-6 leading-relaxed" style="color: #404040;">
+          <p>
+            <strong style="color: #0a0a0a;">Manga AI</strong> est née d'un constat simple :
+            créer un manga demande des années de pratique du dessin, une discipline
+            scénaristique solide, et un travail de mise en page exigeant. Le résultat
+            est qu'une infime minorité de gens raconte les histoires qu'ils ont en tête
+            sous forme de bande dessinée.
+          </p>
+          <p>
+            Le projet propose une approche radicalement différente : l'utilisateur
+            décrit son histoire en quelques phrases, et la plateforme orchestre
+            plusieurs modèles d'IA pour produire un manga complet, jusqu'à
+            <strong style="color: #0a0a0a;">240 pages</strong>, en quelques minutes.
+            L'application est disponible publiquement sur{" "}
+            <a
+              href="https://manga-ai.fr"
+              target="_blank"
+              rel="noopener"
+              style="color: #dc2626; font-weight: 600;"
+            >
+              manga-ai.fr
+            </a>.
+          </p>
+          <p>
+            Le défi technique central n'est pas la génération d'une image isolée :
+            ça, les modèles savent faire. La vraie difficulté est la{" "}
+            <strong style="color: #0a0a0a;">cohérence narrative et visuelle</strong> sur
+            la durée. Garder le même personnage, le même style, les mêmes décors,
+            la même typographie sur 240 pages, c'est ce qui distingue un outil de
+            production manga professionnel d'un simple générateur de planches.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {/* FONCTIONNEMENT */}
+    <section id="fonctionnement" class="relative bg-neutral-50 py-24 sm:py-32">
+      <div class="mx-auto max-w-5xl px-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(220,38,38,0.30); background: rgba(220,38,38,0.05); color: #b91c1c;"
+        >
+          Fonctionnement
+        </div>
+        <h2
+          class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          Trois temps, un manga.
+        </h2>
+        <p class="mt-4 max-w-2xl text-lg" style="color: #404040;">
+          Sous le capot, l'application Manga AI orchestre une chaîne de traitements
+          en trois grandes phases.
+        </p>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {[
+            {
+              num: "01",
+              title: "Synopsis & découpage",
+              body: "L'utilisateur saisit un synopsis (quelques phrases à une page). Un premier modèle découpe l'histoire en chapitres, scènes, puis en cases. Les personnages sont caractérisés (apparence, voix, traits) et stockés en mémoire canonique.",
+              color: "#7c3aed",
+            },
+            {
+              num: "02",
+              title: "Génération des planches",
+              body: "Pour chaque case, un modèle image-text2image génère le visuel à partir d'un prompt enrichi des descriptions canoniques. Les bulles, onomatopées et cadrages sont composés en post-traitement.",
+              color: "#c026d3",
+            },
+            {
+              num: "03",
+              title: "Assemblage & export",
+              body: "Le manga est assemblé page après page, paginé, exporté en PDF haute définition. Tout est versionné côté Supabase ; l'utilisateur peut éditer une case ou un dialogue à tout moment.",
+              color: "#dc2626",
+            },
+          ].map((step) => (
+            <article
+              class="relative flex flex-col rounded-2xl border bg-white p-6"
+              style={`border-color: #e5e5e5; box-shadow: 0 8px 24px -16px ${step.color}40;`}
+            >
+              <div
+                class="text-5xl font-bold tracking-tight"
+                style={`color: ${step.color};`}
+              >
+                {step.num}
+              </div>
+              <h3
+                class="mt-4 text-lg font-bold leading-tight"
+                style="color: #0a0a0a;"
+              >
+                {step.title}
+              </h3>
+              <p class="mt-3 text-sm leading-relaxed" style="color: #404040;">
+                {step.body}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <p class="mt-12 max-w-2xl text-base" style="color: #404040;">
+          Ce pipeline est ce qui permet à{" "}
+          <a
+            href="https://manga-ai.fr"
+            target="_blank"
+            rel="noopener"
+            style="color: #dc2626; font-weight: 600;"
+          >
+            manga-ai.fr
+          </a>{" "}
+          de produire un manga de format long là où la plupart des outils
+          s'arrêtent à quelques planches isolées.
+        </p>
+      </div>
+    </section>
+
+    {/* CAS D'USAGE */}
+    <section class="relative py-24 sm:py-32">
+      <div class="mx-auto max-w-5xl px-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(124,58,237,0.30); background: rgba(124,58,237,0.06); color: #6d28d9;"
+        >
+          Cas d'usage
+        </div>
+        <h2
+          class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          Pour qui, pour quoi.
+        </h2>
+
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {[
+            { title: "Auteurs amateurs", body: "Concrétiser un manga sans savoir dessiner, et l'éditer en quelques heures plutôt que des années." },
+            { title: "Créateurs de contenu", body: "Produire des séries narratives pour Instagram, TikTok, YouTube Shorts, à un rythme soutenu." },
+            { title: "Éducation", body: "Engager les élèves de collège et lycée autour d'une production manga collective, en cours de français ou d'arts plastiques." },
+            { title: "Agences créatives", body: "Pitch decks et campagnes BtoB en format manga pour des marques jeunes." },
+            { title: "Éditeurs indépendants", body: "Tester un univers avant d'investir dans un illustrateur, ou compléter un catalogue à moindre coût." },
+            { title: "Communication interne", body: "Onboardings, formations, livrets RH gamifiés en bande dessinée." },
+          ].map((u) => (
+            <article
+              class="rounded-xl border bg-white p-5 transition-all hover:-translate-y-0.5"
+              style="border-color: #e5e5e5;"
+            >
+              <h3 class="text-base font-bold" style="color: #0a0a0a;">
+                {u.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed" style="color: #404040;">
+                {u.body}
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* STACK */}
+    <section class="relative bg-neutral-50 py-24 sm:py-32">
+      <div class="mx-auto max-w-3xl px-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(220,38,38,0.30); background: rgba(220,38,38,0.05); color: #b91c1c;"
+        >
+          Stack technique
+        </div>
+        <h2
+          class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          Sous le capot.
+        </h2>
+
+        <div class="mt-8 space-y-6 text-lg leading-relaxed" style="color: #404040;">
+          <p>
+            Côté front, <strong style="color: #0a0a0a;">Vite et React</strong> pour
+            une SPA réactive, optimisée pour le rendu de centaines de planches sans
+            blocage du thread principal. <strong style="color: #0a0a0a;">Supabase</strong>{" "}
+            gère l'authentification, la base PostgreSQL et le stockage des assets.{" "}
+            <strong style="color: #0a0a0a;">Stripe</strong> assure les paiements (essai
+            gratuit, abonnement débloquant les exports HD).
+          </p>
+          <p>
+            Côté infrastructure,{" "}
+            <strong style="color: #0a0a0a;">Cloudflare</strong> sert le front en edge
+            mondial et héberge les Workers qui orchestrent les appels API.
+          </p>
+          <p>
+            Le moteur IA mobilise plusieurs modèles selon la tâche :
+            <strong style="color: #0a0a0a;"> OpenAI</strong> pour la narration et le
+            découpage, <strong style="color: #0a0a0a;">Google Gemini</strong> pour
+            certaines tâches de raisonnement multimodal,{" "}
+            <strong style="color: #0a0a0a;">Anthropic Claude</strong> pour le contrôle
+            de cohérence et les dialogues. Une partie des modèles tourne en local sur
+            un <strong style="color: #0a0a0a;">serveur GPU dédié</strong> pour la
+            génération d'images sans coût d'API ni latence externe.
+          </p>
+          <p>
+            Cette architecture hybride cloud + local est ce qui permet
+            économiquement de générer des mangas longs : si tout passait par des
+            API cloud, le coût par utilisateur serait prohibitif. Pour aller plus
+            loin et tester l'outil, rendez-vous sur{" "}
+            <a
+              href="https://manga-ai.fr"
+              target="_blank"
+              rel="noopener"
+              style="color: #dc2626; font-weight: 600;"
+            >
+              manga-ai.fr
+            </a>.
+          </p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-2">
+          {[
+            "Vite",
+            "React",
+            "TypeScript",
+            "Supabase",
+            "PostgreSQL",
+            "Stripe",
+            "OpenAI",
+            "Gemini",
+            "Anthropic Claude",
+            "Cloudflare Workers",
+            "Cloudflare Pages",
+            "Serveur GPU local",
+          ].map((tag) => (
+            <span
+              class="rounded-full border px-3 py-1 text-xs font-medium"
+              style="border-color: #d4d4d4; background: #ffffff; color: #404040;"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* FAQ */}
+    <section class="relative py-24 sm:py-32">
+      <div class="mx-auto max-w-3xl px-6">
+        <div
+          class="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-[0.2em]"
+          style="border-color: rgba(124,58,237,0.30); background: rgba(124,58,237,0.06); color: #6d28d9;"
+        >
+          Questions fréquentes
+        </div>
+        <h2
+          class="mt-6 text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          FAQ Manga AI.
+        </h2>
+
+        <div class="mt-10 space-y-3">
+          {faqs.map((f) => (
+            <details
+              class="group rounded-xl border bg-white p-5 transition-all"
+              style="border-color: #e5e5e5;"
+            >
+              <summary
+                class="cursor-pointer text-base font-semibold marker:hidden"
+                style="color: #0a0a0a;"
+              >
+                {f.question}
+              </summary>
+              <div
+                class="mt-3 text-base leading-relaxed"
+                style="color: #404040;"
+                set:html={f.answer}
+              />
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* CTA final */}
+    <section class="relative overflow-hidden py-24 sm:py-32">
+      <div
+        aria-hidden
+        class="pointer-events-none absolute inset-x-0 top-1/4 -z-10 h-72 opacity-25"
+        style="background: radial-gradient(ellipse at 30% 50%, #a78bfa 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, #f87171 0%, transparent 60%); filter: blur(80px);"
+      >
+      </div>
+
+      <div class="mx-auto max-w-3xl px-6 text-center">
+        <h2
+          class="text-4xl font-bold tracking-tight sm:text-5xl"
+          style="color: #0a0a0a;"
+        >
+          Prêt à tester votre premier <span class="text-gradient">manga généré par IA</span> ?
+        </h2>
+        <p class="mx-auto mt-6 max-w-xl text-lg" style="color: #404040;">
+          Les premières pages sont gratuites. Aucun engagement, aucun téléchargement,
+          tout dans le navigateur.
+        </p>
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="https://manga-ai.fr"
+            target="_blank"
+            rel="noopener"
+            class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full px-8 py-3.5 text-base font-semibold text-white transition-all hover:-translate-y-0.5"
+            style="background: linear-gradient(90deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%); box-shadow: 0 12px 30px -10px rgba(220,38,38,0.45);"
+          >
+            Lancer Manga AI sur manga-ai.fr
+            <svg viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4" aria-hidden>
+              <path d="M5.5 3a.5.5 0 010-1h7a.5.5 0 01.5.5v7a.5.5 0 01-1 0V3.707l-8.146 8.147a.5.5 0 01-.708-.708L11.293 3H5.5z" />
+            </svg>
+          </a>
+          <a
+            href="/#projets"
+            class="inline-flex items-center gap-2 rounded-full border px-8 py-3.5 text-base font-semibold transition-all hover:-translate-y-0.5"
+            style="border-color: #d4d4d4; color: #0a0a0a;"
+          >
+            Voir tous mes projets
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+
+  {/* JSON-LD : SoftwareApplication + Project + BreadcrumbList + FAQPage */}
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          name: "Manga AI",
+          alternateName: "Générateur de manga par IA",
+          url: "https://manga-ai.fr",
+          applicationCategory: "MultimediaApplication",
+          operatingSystem: "Web",
+          description:
+            "Générateur de manga par intelligence artificielle. Transforme un scénario en manga complet jusqu'à 240 pages. Trilingue FR/EN/ES.",
+          inLanguage: ["fr", "en", "es"],
+          author: {
+            "@type": "Person",
+            name: "Quentin DUROY",
+            url: "https://quentin-duroy.fr",
+          },
+          offers: {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "EUR",
+            description: "Essai gratuit pour les premières pages",
+          },
+        },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Accueil", item: "https://quentin-duroy.fr/" },
+            { "@type": "ListItem", position: 2, name: "Projets", item: "https://quentin-duroy.fr/#projets" },
+            { "@type": "ListItem", position: 3, name: "Manga AI", item: canonical },
+          ],
+        },
+        {
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: f.answer.replace(/<[^>]+>/g, ""),
+            },
+          })),
+        },
+      ],
+    })}
+  />
+</Layout>
