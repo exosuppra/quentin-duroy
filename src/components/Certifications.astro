@@ -4,7 +4,7 @@
 const LINKEDIN_CERTS_URL = "https://www.linkedin.com/in/quentin-duroy/details/certifications/";
 
 const microCerts = [
-  // Anthropic (14)
+  // Anthropic (18)
   { issuer: "Anthropic", name: "Claude with Google Vertex AI", date: "Mai 2026", id: "ysu55ztdurks", accent: "violet", logo: null },
   { issuer: "Anthropic", name: "AI Capabilities and Limitations", date: "Mai 2026", id: "j8ysbjw5dd8g", accent: "violet", logo: null },
   { issuer: "Anthropic", name: "AI Fluency for Small Businesses", date: "Mai 2026", id: "q5d2vwu84d7x", accent: "violet", logo: null },
@@ -77,6 +77,13 @@ const accentBorder: Record<string, string> = {
   violet: "rgba(124,58,237,0.30)",
   red: "rgba(220,38,38,0.30)",
   fuchsia: "rgba(192,38,211,0.28)",
+};
+
+// Real platform logos (official brand marks), shown in each cert badge.
+const issuerLogo: Record<string, string> = {
+  Anthropic: "/logo-anthropic.svg",
+  Make: "/logo-make.svg",
+  Lovable: "/logo-lovable.svg",
 };
 
 // Count by issuer
@@ -274,7 +281,7 @@ const countLovable = microCerts.filter(c => c.issuer === "Lovable").length;
       </p>
     </div>
 
-    <!-- 3. 16 MICRO-CERTIFICATIONS -->
+    <!-- 3. 23 MICRO-CERTIFICATIONS -->
     <div class="mb-16">
       <div class="mb-6 flex items-end justify-between">
         <div>
@@ -304,15 +311,20 @@ const countLovable = microCerts.filter(c => c.issuer === "Lovable").length;
               onmouseover={`this.style.borderColor='${accentBorder[c.accent]}'; this.style.boxShadow='0 8px 20px -10px ${accentColor[c.accent]}40'`}
               onmouseout={`this.style.borderColor='#e5e5e5'; this.style.boxShadow='none'`}
             >
-              {c.logo ? (
-                <img
-                  src={c.logo}
-                  alt=""
-                  width={36}
-                  height={36}
-                  loading="lazy"
-                  class="h-9 w-9 shrink-0 rounded-lg object-cover"
-                />
+              {issuerLogo[c.issuer] ? (
+                <div
+                  class="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-white"
+                  style="border-color: #e5e5e5;"
+                >
+                  <img
+                    src={issuerLogo[c.issuer]}
+                    alt={c.issuer}
+                    width={20}
+                    height={20}
+                    loading="lazy"
+                    class="h-5 w-5 object-contain"
+                  />
+                </div>
               ) : (
                 <div
                   class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-xs font-bold"

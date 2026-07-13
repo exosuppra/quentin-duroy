@@ -18,6 +18,10 @@ export type Project = {
   accent: "violet" | "rose" | "fuchsia";
   featured?: boolean;
   icon?: ProjectIcon;
+  /** Optional illustration shown on the card cover + in the detail modal. */
+  image?: string;
+  /** Optional alt text for {@link image}. */
+  imageAlt?: string;
 };
 
 export const projects: Project[] = [

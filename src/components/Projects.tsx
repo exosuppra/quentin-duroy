@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { AnimatePresence, motion, useScroll, useTransform } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   Bot,
@@ -9,6 +9,7 @@ import {
   Ghost,
   GraduationCap,
   Languages,
+  X,
   type LucideIcon,
 } from "lucide-react";
 import {
@@ -257,8 +258,99 @@ function FeaturedCard({ project }: { project: Project }) {
   );
 }
 
-function StandardCard({ project, index }: { project: Project; index: number }) {
+function ProjectCover({
+  project,
+  className,
+}: {
+  project: Project;
+  className?: string;
+}) {
   const Icon = project.icon ? iconMap[project.icon] : null;
+  const dot = accentDot[project.accent];
+
+  return (
+    <div className={`relative shrink-0 overflow-hidden ${className ?? ""}`}>
+      {project.image ? (
+        <>
+          <img
+            src={project.image}
+            alt={project.imageAlt ?? project.title}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `linear-gradient(135deg, ${dot}26 0%, rgba(255,255,255,0) 55%)`,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <div
+            className="absolute inset-0"
+            style={{ background: accentCover[project.accent] }}
+          />
+          {/* dotted texture */}
+          <div
+            aria-hidden
+            className="absolute inset-0 opacity-70"
+            style={{
+              backgroundImage: `radial-gradient(${dot}33 1px, transparent 1px)`,
+              backgroundSize: "14px 14px",
+              maskImage:
+                "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
+              WebkitMaskImage:
+                "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
+            }}
+          />
+          {/* large faint watermark icon */}
+          {Icon && (
+            <Icon
+              aria-hidden
+              className="absolute -bottom-6 -right-5 h-36 w-36 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"
+              style={{ color: dot, opacity: 0.14 }}
+              strokeWidth={1.25}
+            />
+          )}
+        </>
+      )}
+
+      {/* solid icon badge */}
+      {Icon && (
+        <div
+          className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl"
+          style={{ background: dot, boxShadow: `0 8px 18px -6px ${dot}80` }}
+        >
+          <Icon className="h-5 w-5" style={{ color: "#ffffff" }} strokeWidth={2} />
+        </div>
+      )}
+
+      {/* category chip */}
+      <span
+        className="absolute bottom-4 left-5 inline-flex max-w-[82%] items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider backdrop-blur"
+        style={{
+          borderColor: `${dot}40`,
+          background: "rgba(255,255,255,0.82)",
+          color: dot,
+        }}
+      >
+        <span className="truncate">{project.tagline}</span>
+      </span>
+    </div>
+  );
+}
+
+function StandardCard({
+  project,
+  index,
+  onOpen,
+}: {
+  project: Project;
+  index: number;
+  onOpen: () => void;
+}) {
   const dot = accentDot[project.accent];
 
   return (
@@ -267,7 +359,17 @@ function StandardCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border transition-all hover:-translate-y-1"
+      onClick={onOpen}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onOpen();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      aria-haspopup="dialog"
+      className="group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border outline-none transition-all hover:-translate-y-1 focus-visible:ring-2"
       style={{
         borderColor: "#e5e5e5",
         background: "#ffffff",
@@ -285,76 +387,16 @@ function StandardCard({ project, index }: { project: Project; index: number }) {
           "0 4px 12px -6px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04)";
       }}
     >
-      {/* Whole card is clickable when the project has a URL */}
-      {project.href && (
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener"
-          aria-label={project.hrefLabel ?? `Voir ${project.title}`}
-          className="absolute inset-0 z-20"
-        />
-      )}
+      <ProjectCover project={project} className="h-28" />
 
-      {/* COVER — visual header: tinted wash + icon watermark + icon badge */}
-      <div className="relative h-28 shrink-0 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{ background: accentCover[project.accent] }}
-        />
-        {/* dotted texture */}
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-70"
-          style={{
-            backgroundImage: `radial-gradient(${dot}33 1px, transparent 1px)`,
-            backgroundSize: "14px 14px",
-            maskImage:
-              "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
-          }}
-        />
-        {/* large faint watermark icon */}
-        {Icon && (
-          <Icon
-            aria-hidden
-            className="absolute -bottom-5 -right-4 h-32 w-32 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"
-            style={{ color: dot, opacity: 0.14 }}
-            strokeWidth={1.25}
-          />
-        )}
-        {/* solid icon badge */}
-        {Icon && (
-          <div
-            className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl"
-            style={{ background: dot, boxShadow: `0 8px 18px -6px ${dot}80` }}
-          >
-            <Icon className="h-5 w-5" style={{ color: "#ffffff" }} strokeWidth={2} />
-          </div>
-        )}
-        {/* category chip */}
-        <span
-          className="absolute bottom-4 left-5 inline-flex max-w-[82%] items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider backdrop-blur"
-          style={{
-            borderColor: `${dot}40`,
-            background: "rgba(255,255,255,0.78)",
-            color: dot,
-          }}
-        >
-          <span className="truncate">{project.tagline}</span>
-        </span>
-        {/* external-link indicator (on hover) */}
-        {project.href && (
-          <span
-            aria-hidden
-            className="absolute right-4 top-6 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:opacity-100"
-            style={{ background: "rgba(255,255,255,0.9)", color: dot }}
-          >
-            <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
-          </span>
-        )}
-      </div>
+      {/* open indicator (on hover) */}
+      <span
+        aria-hidden
+        className="absolute right-4 top-6 z-10 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:opacity-100"
+        style={{ background: "rgba(255,255,255,0.9)", color: dot }}
+      >
+        <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+      </span>
 
       {/* BODY */}
       <div className="flex flex-1 flex-col p-6">
@@ -398,9 +440,129 @@ function StandardCard({ project, index }: { project: Project; index: number }) {
   );
 }
 
+function ProjectModal({
+  project,
+  onClose,
+}: {
+  project: Project;
+  onClose: () => void;
+}) {
+  const dot = accentDot[project.accent];
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [onClose]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
+    >
+      {/* backdrop */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "rgba(10,10,10,0.55)", backdropFilter: "blur(4px)" }}
+      />
+
+      {/* panel */}
+      <motion.div
+        className="group relative z-10 flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border bg-white shadow-2xl"
+        style={{ borderColor: "#e5e5e5" }}
+        initial={{ opacity: 0, y: 24, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 24, scale: 0.98 }}
+        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Fermer"
+          className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border bg-white/90 text-neutral-600 backdrop-blur transition-colors hover:text-neutral-900"
+          style={{ borderColor: "#e5e5e5" }}
+        >
+          <X className="h-4 w-4" strokeWidth={2.5} />
+        </button>
+
+        <ProjectCover project={project} className="h-44" />
+
+        <div className="flex flex-col gap-4 overflow-y-auto p-7 sm:p-8">
+          <div>
+            <h3
+              className="text-2xl font-bold tracking-tight"
+              style={{ color: "#0a0a0a" }}
+            >
+              {project.title}
+            </h3>
+            <p className="mt-1 text-base font-medium" style={{ color: dot }}>
+              {project.tagline}
+            </p>
+          </div>
+
+          <p className="text-[15px] leading-relaxed" style={{ color: "#404040" }}>
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-1.5">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="rounded-md border px-2 py-0.5 text-xs font-medium"
+                style={{
+                  borderColor: "#e5e5e5",
+                  background: "#fafafa",
+                  color: "#525252",
+                }}
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {project.href && (
+            <div className="pt-1">
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
+                  boxShadow: "0 12px 30px -12px rgba(220,38,38,0.40)",
+                }}
+              >
+                {project.hrefLabel ?? "Voir le projet"}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+              </a>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function Projects() {
   const featured = projects.find((p) => p.featured);
   const others = projects.filter((p) => !p.featured);
+  const [active, setActive] = useState<Project | null>(null);
 
   return (
     <section
@@ -443,9 +605,24 @@ export default function Projects() {
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {featured && <FeaturedCard project={featured} />}
         {others.map((p, i) => (
-          <StandardCard key={p.slug} project={p} index={i} />
+          <StandardCard
+            key={p.slug}
+            project={p}
+            index={i}
+            onOpen={() => setActive(p)}
+          />
         ))}
       </div>
+
+      <AnimatePresence>
+        {active && (
+          <ProjectModal
+            key={active.slug}
+            project={active}
+            onClose={() => setActive(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }
