@@ -56,6 +56,16 @@ export const projects: Project[] = [
     icon: "bot",
   },
   {
+    slug: "agent-sdr-autonome",
+    title: "Agent SDR autonome",
+    tagline: "Agent commercial IA 100 % autonome sur LinkedIn",
+    description:
+      "Un projet d'agent commercial entièrement autonome : on lui confie un profil de client idéal (ICP) en langage naturel, et il identifie puis qualifie des prospects sur LinkedIn, mène lui-même la conversation, décroche un rendez-vous dans un agenda et journalise tout dans un CRM — en décidant seul de l'ordre de ses actions. Le cerveau (Claude) planifie et décide, les outils (LinkedIn, agenda, CRM) exécutent. Architecture robuste conçue pour tourner sans surveillance : mémoire persistante, superviseur avec alertes de panne proactives, gestion du consentement (Do-Not-Contact) et tests de chaos. L'un de mes projets les plus ambitieux.",
+    tech: ["Python", "Claude / Anthropic", "Tool use", "Orchestration autonome", "LinkedIn", "CRM & Agenda"],
+    accent: "violet",
+    icon: "bot",
+  },
+  {
     slug: "catalogue-formation",
     title: "Catalogue de formation IA",
     tagline: "Partenariat FROT PACA",
