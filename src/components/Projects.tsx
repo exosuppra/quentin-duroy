@@ -1,15 +1,39 @@
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { projects, type Project } from "../data/projects";
+import {
+  ArrowUpRight,
+  Bot,
+  Code2,
+  Compass,
+  Gamepad2,
+  Ghost,
+  GraduationCap,
+  Languages,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  projects,
+  type Project,
+  type ProjectIcon,
+} from "../data/projects";
 
-const accentGradient: Record<Project["accent"], string> = {
-  violet:
-    "linear-gradient(135deg, rgba(124,58,237,0.12) 0%, rgba(124,58,237,0) 80%)",
-  rose:
-    "linear-gradient(135deg, rgba(220,38,38,0.12) 0%, rgba(220,38,38,0) 80%)",
-  fuchsia:
-    "linear-gradient(135deg, rgba(192,38,211,0.12) 0%, rgba(192,38,211,0) 80%)",
+const iconMap: Record<ProjectIcon, LucideIcon> = {
+  compass: Compass,
+  bot: Bot,
+  "graduation-cap": GraduationCap,
+  gamepad: Gamepad2,
+  ghost: Ghost,
+  languages: Languages,
+  code: Code2,
 };
+
+// Soft tinted wash for the card cover, per accent.
+const accentCover: Record<Project["accent"], string> = {
+  violet: "linear-gradient(135deg, #ede9fe 0%, #f5f3ff 55%, #ffffff 100%)",
+  rose: "linear-gradient(135deg, #fee2e2 0%, #fef2f2 55%, #ffffff 100%)",
+  fuchsia: "linear-gradient(135deg, #fae8ff 0%, #fdf4ff 55%, #ffffff 100%)",
+};
+
 const accentDot: Record<Project["accent"], string> = {
   violet: "#7c3aed",
   rose: "#dc2626",
@@ -234,13 +258,16 @@ function FeaturedCard({ project }: { project: Project }) {
 }
 
 function StandardCard({ project, index }: { project: Project; index: number }) {
+  const Icon = project.icon ? iconMap[project.icon] : null;
+  const dot = accentDot[project.accent];
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, delay: index * 0.05, ease: "easeOut" }}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border p-6 backdrop-blur transition-all hover:-translate-y-1"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border transition-all hover:-translate-y-1"
       style={{
         borderColor: "#e5e5e5",
         background: "#ffffff",
@@ -249,58 +276,123 @@ function StandardCard({ project, index }: { project: Project; index: number }) {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = accentBorder[project.accent];
-        e.currentTarget.style.background = "#fafafa";
         e.currentTarget.style.boxShadow =
-          "0 14px 35px -15px rgba(124,58,237,0.18), 0 4px 12px -4px rgba(220,38,38,0.10)";
+          "0 18px 40px -18px rgba(124,58,237,0.22), 0 6px 16px -6px rgba(220,38,38,0.12)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "#e5e5e5";
-        e.currentTarget.style.background = "#ffffff";
         e.currentTarget.style.boxShadow =
           "0 4px 12px -6px rgba(0,0,0,0.06), 0 2px 4px -2px rgba(0,0,0,0.04)";
       }}
     >
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-        style={{ background: accentGradient[project.accent] }}
-      />
-
-      <div className="mb-4 flex items-center gap-2">
-        <span
-          className="inline-block h-2 w-2 rounded-full"
-          style={{ background: accentDot[project.accent] }}
+      {/* Whole card is clickable when the project has a URL */}
+      {project.href && (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener"
+          aria-label={project.hrefLabel ?? `Voir ${project.title}`}
+          className="absolute inset-0 z-20"
         />
-        <span className="text-xs uppercase tracking-wider" style={{ color: "#737373" }}>
-          {project.tagline}
+      )}
+
+      {/* COVER — visual header: tinted wash + icon watermark + icon badge */}
+      <div className="relative h-28 shrink-0 overflow-hidden">
+        <div
+          className="absolute inset-0"
+          style={{ background: accentCover[project.accent] }}
+        />
+        {/* dotted texture */}
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-70"
+          style={{
+            backgroundImage: `radial-gradient(${dot}33 1px, transparent 1px)`,
+            backgroundSize: "14px 14px",
+            maskImage:
+              "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at 72% 40%, black 0%, transparent 75%)",
+          }}
+        />
+        {/* large faint watermark icon */}
+        {Icon && (
+          <Icon
+            aria-hidden
+            className="absolute -bottom-5 -right-4 h-32 w-32 transition-transform duration-500 group-hover:-rotate-6 group-hover:scale-110"
+            style={{ color: dot, opacity: 0.14 }}
+            strokeWidth={1.25}
+          />
+        )}
+        {/* solid icon badge */}
+        {Icon && (
+          <div
+            className="absolute left-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl"
+            style={{ background: dot, boxShadow: `0 8px 18px -6px ${dot}80` }}
+          >
+            <Icon className="h-5 w-5" style={{ color: "#ffffff" }} strokeWidth={2} />
+          </div>
+        )}
+        {/* category chip */}
+        <span
+          className="absolute bottom-4 left-5 inline-flex max-w-[82%] items-center rounded-full border px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wider backdrop-blur"
+          style={{
+            borderColor: `${dot}40`,
+            background: "rgba(255,255,255,0.78)",
+            color: dot,
+          }}
+        >
+          <span className="truncate">{project.tagline}</span>
         </span>
+        {/* external-link indicator (on hover) */}
+        {project.href && (
+          <span
+            aria-hidden
+            className="absolute right-4 top-6 flex h-8 w-8 items-center justify-center rounded-full opacity-0 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:opacity-100"
+            style={{ background: "rgba(255,255,255,0.9)", color: dot }}
+          >
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+          </span>
+        )}
       </div>
 
-      <h3
-        className="mb-3 text-xl font-bold tracking-tight"
-        style={{ color: "#0a0a0a" }}
-      >
-        {project.title}
-      </h3>
-
-      <p className="mb-5 flex-1 text-sm leading-relaxed" style={{ color: "#404040" }}>
-        {project.description}
-      </p>
-
-      <div className="flex flex-wrap gap-1.5">
-        {project.tech.slice(0, 4).map((t) => (
-          <span
-            key={t}
-            className="rounded-md border px-2 py-0.5 text-[11px] font-medium"
-            style={{
-              borderColor: "#e5e5e5",
-              background: "#fafafa",
-              color: "#737373",
-            }}
-          >
-            {t}
-          </span>
-        ))}
+      {/* BODY */}
+      <div className="flex flex-1 flex-col p-6">
+        <h3
+          className="text-lg font-bold tracking-tight"
+          style={{ color: "#0a0a0a" }}
+        >
+          {project.title}
+        </h3>
+        <p
+          className="mt-2 line-clamp-3 text-sm leading-relaxed"
+          style={{ color: "#404040" }}
+        >
+          {project.description}
+        </p>
+        <div className="mt-auto flex flex-wrap gap-1.5 pt-4">
+          {project.tech.slice(0, 4).map((t) => (
+            <span
+              key={t}
+              className="rounded-md border px-2 py-0.5 text-[11px] font-medium"
+              style={{
+                borderColor: "#e5e5e5",
+                background: "#fafafa",
+                color: "#737373",
+              }}
+            >
+              {t}
+            </span>
+          ))}
+          {project.tech.length > 4 && (
+            <span
+              className="px-1 py-0.5 text-[11px] font-semibold"
+              style={{ color: dot }}
+            >
+              +{project.tech.length - 4}
+            </span>
+          )}
+        </div>
       </div>
     </motion.article>
   );

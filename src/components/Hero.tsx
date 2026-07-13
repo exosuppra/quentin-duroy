@@ -33,6 +33,9 @@ const socialLinks: { icon: IconComponent; href: string; label: string }[] = [
 ];
 
 export default function Hero() {
+  // Width of the portrait+circle group. Capped by viewport width AND height
+  // (64vh) so the group never grows taller than the section and detaches.
+  const figW = "min(46vw, 540px, 64vh)";
   return (
     <section
       id="hero"
@@ -50,21 +53,19 @@ export default function Hero() {
         }}
       />
 
-      {/* PORTRAIT + CIRCLE — absolutely anchored to the bottom of the section */}
-      <div
-        aria-hidden="false"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center"
-        style={{ height: "85%" }}
-      >
-        <div className="relative h-full" style={{ width: "min(46vw, 540px)" }}>
+      {/* PORTRAIT + CIRCLE — bottom-anchored group sized to the portrait's own
+          aspect ratio (800×1066). Because the box height tracks the portrait,
+          the circle's `top: 8%` always lands on the head, at any screen height. */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex justify-center">
+        <div className="relative" style={{ width: figW, aspectRatio: "800 / 1066" }}>
           {/* Soft glow halo around the head area */}
           <div
             aria-hidden
             className="hero-fade-pop absolute left-1/2 -translate-x-1/2 rounded-full opacity-50 blur-3xl"
             style={{
               top: "8%",
-              width: "min(40vw, 480px)",
-              height: "min(40vw, 480px)",
+              width: `calc(${figW} * 0.889)`,
+              height: `calc(${figW} * 0.889)`,
               background:
                 "conic-gradient(from 0deg, #7c3aed, #c026d3, #dc2626, #7c3aed)",
               animation:
@@ -77,14 +78,14 @@ export default function Hero() {
             className="hero-fade-pop absolute left-1/2 -translate-x-1/2 rounded-full"
             style={{
               top: "8%",
-              width: "min(36vw, 440px)",
-              height: "min(36vw, 440px)",
+              width: `calc(${figW} * 0.815)`,
+              height: `calc(${figW} * 0.815)`,
               background:
                 "linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #dc2626 100%)",
             }}
           />
-          {/* Portrait — bottom-anchored, extends upward through the circle */}
-          <picture className="hero-fade hero-fade-up absolute bottom-0 left-1/2 block h-full w-full -translate-x-1/2">
+          {/* Portrait — fills the aspect-ratio box, head aligned with the circle */}
+          <picture className="hero-fade hero-fade-up absolute inset-0 block">
             <source srcSet="/quentin-profile.webp" type="image/webp" />
             <img
               src="/quentin-profile.png"
@@ -152,12 +153,12 @@ export default function Hero() {
           <div className="mt-8 flex items-center justify-center gap-6 text-xs text-neutral-500 md:justify-start">
             <div>
               <div className="text-base font-bold text-neutral-900">~80 %</div>
-              <div className="tracking-wider">automatisés</div>
+              <div className="tracking-wider">de mes tâches web automatisées</div>
             </div>
             <div className="h-8 w-px bg-neutral-200" />
             <div>
-              <div className="text-base font-bold text-neutral-900">60+</div>
-              <div className="tracking-wider">scénarios make</div>
+              <div className="text-base font-bold text-neutral-900">100+</div>
+              <div className="tracking-wider">solutions IA &amp; automatisations</div>
             </div>
           </div>
         </div>

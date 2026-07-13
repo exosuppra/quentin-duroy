@@ -1,3 +1,12 @@
+export type ProjectIcon =
+  | "compass"
+  | "bot"
+  | "graduation-cap"
+  | "gamepad"
+  | "ghost"
+  | "languages"
+  | "code";
+
 export type Project = {
   slug: string;
   title: string;
@@ -8,6 +17,7 @@ export type Project = {
   hrefLabel?: string;
   accent: "violet" | "rose" | "fuchsia";
   featured?: boolean;
+  icon?: ProjectIcon;
 };
 
 export const projects: Project[] = [
@@ -33,6 +43,7 @@ export const projects: Project[] = [
     href: "https://apidia.lovable.app/catalogue",
     hrefLabel: "Voir le catalogue de services",
     accent: "violet",
+    icon: "compass",
   },
   {
     slug: "oto",
@@ -42,6 +53,7 @@ export const projects: Project[] = [
       "Premier agent IA sur mesure déployé dans un office de tourisme français (mars 2025). OTO assiste la communication digitale, marketing et gestion des ordres de mission. Couplé à OTO_Mail (assistant email), ils interviennent dans l'exécution d'une soixantaine de tâches métier au quotidien.",
     tech: ["Make", "ChatGPT Team", "Anthropic", "MCP", "Tool use", "Webhooks"],
     accent: "fuchsia",
+    icon: "bot",
   },
   {
     slug: "catalogue-formation",
@@ -53,6 +65,7 @@ export const projects: Project[] = [
     href: "https://formation-ot-paysdemanosque.lovable.app/",
     hrefLabel: "Voir le catalogue",
     accent: "violet",
+    icon: "graduation-cap",
   },
   {
     slug: "aegis",
@@ -62,6 +75,7 @@ export const projects: Project[] = [
       "Système qui orchestre plusieurs modèles d'IA (hébergés en local) pour générer game design, sprites, dialogues et code pour Unreal Engine 5 à partir d'une simple idée de jeu. Architecture entièrement souveraine : pas d'API cloud, tout tourne sur ressources locales.",
     tech: ["Unreal Engine 5", "Python", "Modèles locaux", "Stable Diffusion local", "Ollama"],
     accent: "fuchsia",
+    icon: "gamepad",
   },
   {
     slug: "la-piece-qui-attend",
@@ -71,6 +85,7 @@ export const projects: Project[] = [
       "Jeu d'horreur narratif à la première personne (~30-45 min) construit avec Three.js et WebGL, packagé en .exe Windows hors-ligne via Electron. Audio spatialisé HRTF (Web Audio API), miroirs reflétés en temps réel, assets PBR et modèles 3D entièrement libres (Poly Haven et Freesound, licences CC0). Énigmes scénarisées (radio, dessins, frigo) qui s'enchaînent jusqu'à une révélation finale en plein jour. V2 prévue sur Unreal Engine 5, sortie commerciale envisagée sur Steam.",
     tech: ["Three.js", "WebGL", "Electron", "HRTF Audio", "glTF / PBR", "Steam", "Unreal Engine 5"],
     accent: "rose",
+    icon: "ghost",
   },
   {
     slug: "traducteur-surimpression",
@@ -80,6 +95,7 @@ export const projects: Project[] = [
       "Application desktop qui capture une zone d'écran, détecte le texte (OCR multilingue) et superpose la traduction en direct. Pensée pour les jeux et les médias étrangers.",
     tech: ["Electron", "Tesseract", "DeepL API", "TypeScript"],
     accent: "violet",
+    icon: "languages",
   },
   {
     slug: "ce-site",
@@ -89,5 +105,6 @@ export const projects: Project[] = [
       "Ce site lui-même. Astro statique + Tailwind 4 + Motion + GSAP. Hébergé en edge sur Cloudflare Pages. Quasi 0 framework JS sur les pages, des îlots React pour les animations clés.",
     tech: ["Astro", "Tailwind", "Motion", "TypeScript", "Cloudflare"],
     accent: "rose",
+    icon: "code",
   },
 ];

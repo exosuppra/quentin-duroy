@@ -24,11 +24,11 @@ export const parcours: ParcoursEntry[] = [
     ],
   },
   {
-    period: "Juil. 2025 → aujourd'hui",
+    period: "Juil. 2025 → Août 2026",
     role: "Référent IA & Chef de Projet Web",
     company: "Office de Tourisme et des Congrès du Pays de Manosque",
     location: "Gréoux-les-Bains · CDI · Hybride",
-    type: "current",
+    type: "past",
     accent: "terracotta",
     highlights: [
       "Apidia : plateforme IA & agent conseiller en séjour, qualification automatique de la donnée touristique (6 000 fiches scrapées/jour, valeur marché ~50 k€), livrée septembre 2025",
