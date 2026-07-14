@@ -20,7 +20,6 @@ export const parcours: ParcoursEntry[] = [
       "Cabinet d'ingénierie IA & automatisation pour entreprises et acteurs touristiques",
       "Conception et déploiement de produits IA en propre",
       "Accompagnement stratégique IA des dirigeants",
-      "Extension du catalogue de services IA de l'OT du Pays de Manosque",
     ],
   },
   {
