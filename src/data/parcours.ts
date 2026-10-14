@@ -10,6 +10,21 @@ export type ParcoursEntry = {
 
 export const parcours: ParcoursEntry[] = [
   {
+    period: "Sept. 2026 → aujourd'hui",
+    role: "Responsable Growth Hacking — IA-First",
+    company: "Periplea",
+    location: "Venelles · CDI · Cadre",
+    type: "current",
+    accent: "terracotta",
+    highlights: [
+      "Croissance IA-First des 3 BU du groupe (MyInternshipAbroad, Visa & Programmes, MeetYourSchool), en ressource mutualisée 33 % / 33 % / 33 %",
+      "Construction et pilotage d'un écosystème d'agents IA : SEO, Content, Prospection, CRM",
+      "Growth multi-canal : A/B testing, SEO programmatique, retargeting IA, email marketing automatisé",
+      "HubSpot comme outil pivot (CRM, workflows, scoring) couplé à Make & n8n",
+      "Pilotage 100 % data : KPI acquisition/conversion, dashboards automatisés, budget & ROI par BU, COPIL mensuel",
+    ],
+  },
+  {
     period: "Janv. 2026 → aujourd'hui",
     role: "Fondateur",
     company: "LOGIQ IA",
